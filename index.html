@@ -3,891 +3,709 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Willow Home Owners Association | Serving the Willow Bend Community</title>
-    
+    <title>Willow Home Owners Association, Inc. | Willow Bend Community</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
     <script>
         tailwind.config = {
+            darkMode: 'class',
             theme: {
                 extend: {
                     colors: {
                         brand: {
                             50: '#f0fdf4',
                             100: '#dcfce7',
-                            200: '#bbf7d0',
                             600: '#16a34a',
                             700: '#15803d',
                             800: '#166534',
                             900: '#14532d',
                         },
-                        amber: {
+                        amberGold: {
                             400: '#fbbf24',
                             500: '#f59e0b',
+                            600: '#d97706',
                         }
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
                     }
                 }
             }
         }
     </script>
-    
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    
-    <!-- FontAwesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
         body { font-family: 'Inter', sans-serif; }
-        .hero-overlay {
-            background: linear-gradient(180deg, rgba(15, 23, 42, 0.82) 0%, rgba(15, 23, 42, 0.92) 100%);
+        .text-shadow-hero {
+            text-shadow: 0 3px 10px rgba(0, 0, 0, 0.85), 0 1px 3px rgba(0, 0, 0, 0.9);
         }
-        .gold-shadow {
-            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9), 0 0 20px rgba(245, 158, 11, 0.25);
+        /* Custom Scrollbar for Modal and Filters */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
         }
     </style>
 </head>
-<body class="bg-slate-50 text-slate-800 antialiased flex flex-col min-h-screen">
+<body class="bg-slate-50 text-slate-800 antialiased selection:bg-brand-600 selection:text-white flex flex-col min-h-screen">
 
-    <!-- Top Announcement Bar -->
-    <div class="bg-brand-900 text-brand-100 px-4 py-2.5 text-xs sm:text-sm text-center font-medium flex items-center justify-center gap-2 shadow-inner">
-        <span class="inline-block w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
-        <span>Managed by <strong>Associa</strong> — Access your owner account on TownSq at <a href="https://app.townsq.io/" target="_blank" rel="noopener noreferrer" class="underline hover:text-white font-bold ml-1">app.townsq.io</a></span>
+    <!-- Top Announcement Bar (Single streamlined entry point for TownSq) -->
+    <div class="bg-slate-900 text-slate-200 text-xs sm:text-sm py-2 px-4 border-b border-slate-800">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2 text-center sm:text-left">
+            <div class="flex items-center gap-2">
+                <span class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                <span class="font-medium text-slate-300">Official Resident Portal:</span>
+                <span class="hidden md:inline text-slate-400">Pay dues, submit ARC requests, and view official account records via TownSq.</span>
+            </div>
+            <a href="https://app.townsq.io/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 bg-amberGold-500 hover:bg-amberGold-600 text-slate-950 font-semibold px-3 py-1 rounded-md text-xs transition-colors shadow-sm">
+                <span>Access TownSq</span>
+                <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+            </a>
+        </div>
     </div>
 
-    <!-- Main Navigation Bar -->
-    <header class="sticky top-0 z-40 bg-white/95 backdrop-blur border-b border-slate-200 shadow-sm">
+    <!-- Navigation Bar -->
+    <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
-                
-                <!-- Logo & Legal Name Branding -->
-                <a href="#home" class="flex items-center gap-3 group">
-                    <div class="w-11 h-11 rounded-xl bg-brand-700 text-white flex items-center justify-center font-bold text-2xl shadow-md group-hover:bg-brand-600 transition">
-                        <i class="fa-solid fa-tree"></i>
+                <!-- Logo & Branding -->
+                <a href="#" class="flex items-center gap-3 group">
+                    <div class="p-2.5 bg-brand-800 text-white rounded-xl shadow-md group-hover:bg-brand-700 transition-colors">
+                        <i data-lucide="trees" class="w-7 h-7"></i>
                     </div>
-                    <div>
-                        <span class="block text-lg sm:text-xl font-bold tracking-tight text-slate-900 leading-tight">Willow Home Owners Association</span>
-                        <span class="block text-xs font-semibold text-brand-700 uppercase tracking-wider">Serving the Willow Bend Community</span>
+                    <div class="flex flex-col">
+                        <span class="font-bold text-slate-900 text-lg leading-tight tracking-tight">Willow Home Owners Association, Inc.</span>
+                        <span class="text-xs font-semibold text-brand-700 tracking-wider uppercase">Willow Bend Community</span>
                     </div>
                 </a>
 
                 <!-- Desktop Nav Links -->
-                <nav class="hidden lg:flex items-center gap-6 text-sm font-medium text-slate-600">
-                    <a href="#about" class="hover:text-brand-700 transition">About</a>
-                    <a href="#announcements" class="hover:text-brand-700 transition">Announcements</a>
-                    <a href="#townsq-arc" class="hover:text-brand-700 transition">TownSq & ARC</a>
-                    <a href="#documents" class="hover:text-brand-700 transition">Documents</a>
-                    <a href="#rules" class="hover:text-brand-700 transition">Rules & Covenants</a>
-                    <a href="#board" class="hover:text-brand-700 transition">Board</a>
-                    <a href="#contact" class="hover:text-brand-700 transition">Contact</a>
+                <nav class="hidden md:flex items-center gap-1 lg:gap-2 text-sm font-medium text-slate-700">
+                    <a href="#about" class="px-3 py-2 rounded-lg hover:text-brand-800 hover:bg-slate-100 transition-colors">About</a>
+                    <a href="#documents" class="px-3 py-2 rounded-lg hover:text-brand-800 hover:bg-slate-100 transition-colors">Governing Documents</a>
+                    <a href="#rules" class="px-3 py-2 rounded-lg hover:text-brand-800 hover:bg-slate-100 transition-colors">Community Rules</a>
+                    <a href="#arc" class="px-3 py-2 rounded-lg hover:text-brand-800 hover:bg-slate-100 transition-colors">ARC Requests</a>
+                    <a href="#initiatives" class="px-3 py-2 rounded-lg hover:text-brand-800 hover:bg-slate-100 transition-colors">Board Initiatives</a>
+                    <a href="#contact" class="px-3 py-2 rounded-lg hover:text-brand-800 hover:bg-slate-100 transition-colors">Contact</a>
                 </nav>
 
-                <!-- TownSq Direct CTA Button -->
+                <!-- Desktop Quick Actions -->
                 <div class="hidden lg:flex items-center gap-3">
-                    <a href="https://app.townsq.io/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-brand-700 hover:bg-brand-800 text-white font-bold px-4 py-2.5 rounded-xl text-sm transition shadow-sm hover:shadow-md">
-                        <i class="fa-solid fa-right-to-bracket text-xs"></i>
+                    <a href="https://app.townsq.io/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-brand-800 hover:bg-brand-900 text-white px-4 py-2.5 rounded-lg font-semibold text-sm transition-all shadow-md hover:shadow-lg">
+                        <i data-lucide="user" class="w-4 h-4"></i>
                         <span>TownSq Portal</span>
                     </a>
                 </div>
 
-                <!-- Mobile Menu Toggle Button -->
-                <button id="mobileMenuBtn" type="button" class="lg:hidden p-2 rounded-xl text-slate-600 hover:text-slate-900 hover:bg-slate-100 focus:outline-none" aria-label="Toggle Menu">
-                    <i id="menuIcon" class="fa-solid fa-bars text-xl"></i>
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-100 focus:outline-none" aria-label="Toggle Navigation">
+                    <i data-lucide="menu" class="w-6 h-6"></i>
                 </button>
             </div>
         </div>
 
-        <!-- Mobile Nav Menu Dropdown -->
-        <div id="mobileMenu" class="hidden lg:hidden border-b border-slate-200 bg-white px-4 pt-2 pb-6 space-y-2 text-sm font-medium">
-            <a href="#about" class="block py-2 text-slate-700 hover:text-brand-700">About & Governance</a>
-            <a href="#announcements" class="block py-2 text-slate-700 hover:text-brand-700">Announcements</a>
-            <a href="#townsq-arc" class="block py-2 text-slate-700 hover:text-brand-700">TownSq & Architectural Review</a>
-            <a href="#documents" class="block py-2 text-slate-700 hover:text-brand-700">Document Repository</a>
-            <a href="#rules" class="block py-2 text-slate-700 hover:text-brand-700">Rules & Regulations</a>
-            <a href="#board" class="block py-2 text-slate-700 hover:text-brand-700">Board Trustees</a>
-            <a href="#contact" class="block py-2 text-slate-700 hover:text-brand-700">Contact Us</a>
-            <div class="pt-3 border-t border-slate-100">
-                <a href="https://app.townsq.io/" target="_blank" rel="noopener noreferrer" class="w-full inline-flex justify-center items-center gap-2 bg-brand-700 text-white font-bold px-4 py-3 rounded-xl">
-                    <i class="fa-solid fa-right-to-bracket text-xs"></i>
-                    <span>Log in to TownSq Portal (https://app.townsq.io/)</span>
+        <!-- Mobile Navigation Menu -->
+        <div id="mobile-menu" class="hidden md:hidden border-t border-slate-200 bg-white px-4 pt-2 pb-6 space-y-2 shadow-xl">
+            <a href="#about" class="mobile-nav-link block px-3 py-2.5 rounded-md font-medium text-slate-700 hover:bg-slate-100">About</a>
+            <a href="#documents" class="mobile-nav-link block px-3 py-2.5 rounded-md font-medium text-slate-700 hover:bg-slate-100">Governing Documents</a>
+            <a href="#rules" class="mobile-nav-link block px-3 py-2.5 rounded-md font-medium text-slate-700 hover:bg-slate-100">Community Rules</a>
+            <a href="#arc" class="mobile-nav-link block px-3 py-2.5 rounded-md font-medium text-slate-700 hover:bg-slate-100">ARC Requests</a>
+            <a href="#initiatives" class="mobile-nav-link block px-3 py-2.5 rounded-md font-medium text-slate-700 hover:bg-slate-100">Board Initiatives</a>
+            <a href="#contact" class="mobile-nav-link block px-3 py-2.5 rounded-md font-medium text-slate-700 hover:bg-slate-100">Contact</a>
+            <div class="pt-2">
+                <a href="https://app.townsq.io/" target="_blank" rel="noopener noreferrer" class="w-full flex items-center justify-center gap-2 bg-brand-800 text-white font-semibold py-3 px-4 rounded-lg shadow">
+                    <i data-lucide="external-link" class="w-4 h-4"></i>
+                    <span>Log In to TownSq</span>
                 </a>
             </div>
         </div>
     </header>
 
-    <main class="flex-grow">
-        
-        <!-- Hero Section -->
-        <section id="home" class="relative bg-slate-900 text-white min-h-[520px] flex items-center justify-center overflow-hidden">
-            <!-- Background Image with Overlay -->
-            <img src="https://www.willowbendhoa.org/Willow-Bend-Hero-Background.webp" alt="Willow Bend Neighborhood Homes" class="absolute inset-0 w-full h-full object-cover object-center opacity-40">
-            <div class="absolute inset-0 hero-overlay"></div>
+    <!-- Hero Section -->
+    <section class="relative bg-slate-900 text-white py-24 md:py-32 overflow-hidden">
+        <!-- Background Image with Overlay -->
+        <div class="absolute inset-0 z-0">
+            <img src="https://www.willowbendhoa.org/Willow-Bend-Hero-Background.webp" alt="Willow Bend Community" class="w-full h-full object-cover object-center opacity-30">
+            <div class="absolute inset-0 bg-gradient-to-r from-slate-950/90 via-slate-900/80 to-slate-900/40"></div>
+        </div>
 
-            <div class="relative max-w-5xl mx-auto px-4 py-16 sm:py-24 text-center z-10">
-                <div class="inline-flex items-center gap-2 px-4 py-1.5 bg-brand-500/20 text-brand-300 border border-brand-500/30 rounded-full text-xs sm:text-sm font-semibold tracking-wide uppercase mb-6 backdrop-blur-md">
-                    <i class="fa-solid fa-shield-halved"></i>
-                    <span>Official HOA Portal</span>
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-3xl space-y-6">
+                <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md px-3.5 py-1.5 rounded-full text-xs sm:text-sm font-medium text-emerald-300 border border-white/20">
+                    <i data-lucide="shield-check" class="w-4 h-4 text-emerald-400"></i>
+                    <span>Official HOA Community Portal</span>
                 </div>
                 
-                <!-- Main Header with High-Contrast Amber Text for Willow Bend -->
-                <h1 class="text-3xl sm:text-5xl md:text-6xl font-extrabold text-white tracking-tight leading-tight">
-                    Welcome to <span class="text-amber-400 font-black gold-shadow">Willow Bend</span>
+                <!-- Main Header with High-Contrast Amber Golden Title for Willow Bend -->
+                <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight leading-tight text-white">
+                    Welcome to the <br>
+                    <span class="text-amberGold-400 text-shadow-hero drop-shadow-lg font-black underline decoration-amberGold-500/40 decoration-4 underline-offset-8">Willow Bend</span> Community
                 </h1>
-                
-                <p class="mt-4 text-slate-200 text-base sm:text-xl max-w-3xl mx-auto font-normal leading-relaxed">
-                    Official portal for the <strong>Willow Home Owners Association, Inc.</strong> Dedicated to preserving property values, enhancing common amenities, and serving all homeowners in the Willow Bend Community.
+
+                <p class="text-lg sm:text-xl text-slate-200 leading-relaxed font-normal max-w-2xl">
+                    Managed by <strong>Willow Home Owners Association, Inc.</strong> Dedicated to maintaining property values, enhancing common amenities, and fostering a vibrant neighborhood.
                 </p>
 
-                <!-- Quick Action Hero Buttons -->
-                <div class="mt-8 flex flex-col sm:flex-row gap-4 justify-center items-center">
-                    <a href="https://app.townsq.io/" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 bg-brand-600 hover:bg-brand-500 text-white font-bold px-7 py-4 rounded-xl shadow-lg transition transform hover:-translate-y-0.5">
-                        <i class="fa-solid fa-house-laptop text-lg"></i>
-                        <span>Login to TownSq Portal</span>
+                <!-- Action Buttons -->
+                <div class="pt-4 flex flex-col sm:flex-row gap-4">
+                    <a href="#documents" class="inline-flex items-center justify-center gap-2 bg-brand-600 hover:bg-brand-700 text-white font-semibold px-6 py-3.5 rounded-xl shadow-lg hover:shadow-brand-600/30 transition-all text-base">
+                        <i data-lucide="file-text" class="w-5 h-5"></i>
+                        <span>Search Governing Docs</span>
                     </a>
-                    <a href="#documents" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-slate-800/90 hover:bg-slate-800 text-slate-100 border border-slate-700 font-semibold px-6 py-4 rounded-xl backdrop-blur-sm transition">
-                        <i class="fa-solid fa-folder-open"></i>
-                        <span>Explore Documents</span>
-                    </a>
-                    <a href="#contact" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-slate-800/90 hover:bg-slate-800 text-slate-100 border border-slate-700 font-semibold px-6 py-4 rounded-xl backdrop-blur-sm transition">
-                        <i class="fa-solid fa-envelope"></i>
-                        <span>Contact Board</span>
+                    <a href="https://app.townsq.io/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 text-white border border-white/30 backdrop-blur-sm font-semibold px-6 py-3.5 rounded-xl transition-all text-base">
+                        <i data-lucide="credit-card" class="w-5 h-5 text-amberGold-400"></i>
+                        <span>Pay Dues on TownSq</span>
+                        <i data-lucide="external-link" class="w-4 h-4 opacity-70"></i>
                     </a>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Feature Pillar Cards -->
-        <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-10 relative z-20">
+    <!-- Quick Info Cards Bar -->
+    <section id="about" class="py-12 bg-white border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                
-                <a href="https://app.townsq.io/" target="_blank" rel="noopener noreferrer" class="bg-white rounded-2xl p-6 shadow-md border border-slate-200/80 hover:shadow-lg transition group">
-                    <div class="flex items-start gap-4">
-                        <div class="p-3.5 bg-brand-50 text-brand-700 rounded-xl group-hover:bg-brand-700 group-hover:text-white transition shrink-0">
-                            <i class="fa-solid fa-mobile-screen-button text-2xl"></i>
-                        </div>
-                        <div>
-                            <h3 class="font-bold text-slate-900 text-lg group-hover:text-brand-700 transition flex items-center gap-1.5">
-                                Associa TownSq
-                                <i class="fa-solid fa-arrow-up-right-from-square text-xs text-slate-400"></i>
-                            </h3>
-                            <p class="text-slate-600 text-xs sm:text-sm mt-1">Pay assessment dues, view financial ledgers, and track account activity on app.townsq.io.</p>
-                        </div>
+                <div class="p-6 rounded-2xl bg-slate-50 border border-slate-200/80 hover:shadow-md transition-shadow">
+                    <div class="w-12 h-12 bg-emerald-100 text-brand-800 rounded-xl flex items-center justify-center mb-4">
+                        <i data-lucide="home" class="w-6 h-6"></i>
                     </div>
-                </a>
-
-                <a href="#townsq-arc" class="bg-white rounded-2xl p-6 shadow-md border border-slate-200/80 hover:shadow-lg transition group">
-                    <div class="flex items-start gap-4">
-                        <div class="p-3.5 bg-amber-50 text-amber-600 rounded-xl group-hover:bg-amber-500 group-hover:text-white transition shrink-0">
-                            <i class="fa-solid fa-pen-ruler text-2xl"></i>
-                        </div>
-                        <div>
-                            <h3 class="font-bold text-slate-900 text-lg group-hover:text-amber-600 transition">Architectural Review</h3>
-                            <p class="text-slate-600 text-xs sm:text-sm mt-1">Planning a fence, deck, or shed? Learn how to submit plans through Associa on TownSq.</p>
-                        </div>
-                    </div>
-                </a>
-
-                <a href="#rules" class="bg-white rounded-2xl p-6 shadow-md border border-slate-200/80 hover:shadow-lg transition group">
-                    <div class="flex items-start gap-4">
-                        <div class="p-3.5 bg-blue-50 text-blue-600 rounded-xl group-hover:bg-blue-600 group-hover:text-white transition shrink-0">
-                            <i class="fa-solid fa-book-bookmark text-2xl"></i>
-                        </div>
-                        <div>
-                            <h3 class="font-bold text-slate-900 text-lg group-hover:text-blue-600 transition">Rules & Covenants</h3>
-                            <p class="text-slate-600 text-xs sm:text-sm mt-1">Search deed restrictions, fence limits, parking policies, and maintenance guidelines.</p>
-                        </div>
-                    </div>
-                </a>
-
-            </div>
-        </section>
-
-        <!-- About & Governance Section -->
-        <section id="about" class="py-16 sm:py-20 bg-slate-50">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                    <div>
-                        <span class="text-brand-700 font-semibold text-xs sm:text-sm uppercase tracking-wider">Subdivision Governance</span>
-                        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1">Willow Home Owners Association, Inc.</h2>
-                        <p class="text-brand-800 font-medium text-sm mt-1 mb-4">Serving the Willow Bend Community</p>
-                        
-                        <p class="text-slate-600 leading-relaxed text-sm sm:text-base">
-                            The <strong>Willow Home Owners Association, Inc.</strong> is a non-profit corporation established to preserve the architectural integrity, safety, and property values of the <strong>Willow Bend Community</strong>. 
-                        </p>
-                        <p class="mt-3 text-slate-600 leading-relaxed text-sm sm:text-base">
-                            All lot owners in Willow Bend are automatic members of the Association. Working in partnership with <strong>Associa Community Management</strong>, the Board oversees common area reserves, enforce recorded Deed Restrictions, and manages community finances.
-                        </p>
-
-                        <!-- Governance Pillars -->
-                        <div class="mt-6 space-y-3">
-                            <div class="flex items-start gap-3 bg-white p-3.5 rounded-xl border border-slate-200 shadow-sm">
-                                <i class="fa-solid fa-scale-balanced text-brand-700 text-lg mt-0.5"></i>
-                                <div>
-                                    <h4 class="font-bold text-slate-900 text-sm">Deed Restrictions & Covenants</h4>
-                                    <p class="text-slate-600 text-xs">Protects neighborhood aesthetics, architectural harmony, and single-family land use.</p>
-                                </div>
-                            </div>
-                            <div class="flex items-start gap-3 bg-white p-3.5 rounded-xl border border-slate-200 shadow-sm">
-                                <i class="fa-solid fa-shield-cat text-brand-700 text-lg mt-0.5"></i>
-                                <div>
-                                    <h4 class="font-bold text-slate-900 text-sm">Common Area Reserves</h4>
-                                    <p class="text-slate-600 text-xs">Maintains entryway signage, retention ponds, green spaces, and reserve areas.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="relative">
-                        <div class="rounded-3xl overflow-hidden shadow-xl border border-slate-200">
-                            <img src="https://www.willowbendhoa.org/Willow-Bend-Thumb.webp" alt="Willow Bend Subdivision Landscape" class="w-full h-80 sm:h-96 object-cover">
-                        </div>
-                        <div class="absolute -bottom-6 -left-6 bg-brand-900 text-white p-5 rounded-2xl shadow-lg hidden sm:block max-w-xs">
-                            <i class="fa-solid fa-quote-left text-brand-400 text-2xl mb-2"></i>
-                            <p class="text-xs text-slate-200 italic">"Working together to keep Willow Bend safe, beautiful, and vibrant."</p>
-                            <span class="block text-xs font-bold text-brand-300 mt-2">— Board of Trustees</span>
-                        </div>
-                    </div>
+                    <h3 class="text-lg font-bold text-slate-900 mb-2">Our Neighborhood</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        Willow Bend features beautifully maintained single-family homes, scenic retention ponds, and open green common areas preserved by Willow Home Owners Association, Inc.
+                    </p>
                 </div>
-            </div>
-        </section>
 
-        <!-- Announcements Feed -->
-        <section id="announcements" class="py-16 bg-white border-y border-slate-200">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-end mb-10 gap-4">
-                    <div>
-                        <span class="text-brand-700 font-semibold text-xs uppercase tracking-wider">Community Updates</span>
-                        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1">Latest Announcements</h2>
+                <div class="p-6 rounded-2xl bg-slate-50 border border-slate-200/80 hover:shadow-md transition-shadow">
+                    <div class="w-12 h-12 bg-amber-100 text-amberGold-600 rounded-xl flex items-center justify-center mb-4">
+                        <i data-lucide="globe" class="w-6 h-6"></i>
                     </div>
-                    <a href="https://app.townsq.io/" target="_blank" rel="noopener noreferrer" class="text-brand-700 font-semibold text-sm hover:underline inline-flex items-center gap-1">
-                        <span>View all on TownSq</span>
-                        <i class="fa-solid fa-arrow-right text-xs"></i>
+                    <h3 class="text-lg font-bold text-slate-900 mb-2">TownSq Portal Access</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        TownSq serves as our single external portal for account management, payment processing, violation tracking, and submitting official ARC requests.
+                    </p>
+                    <a href="https://app.townsq.io/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-xs font-bold text-brand-700 hover:text-brand-900 mt-3">
+                        Launch TownSq App <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
                     </a>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <!-- Announcement 1 -->
-                    <div class="bg-slate-50 rounded-2xl p-6 border border-slate-200 flex flex-col justify-between">
-                        <div>
-                            <div class="flex items-center justify-between text-xs text-slate-500 mb-3">
-                                <span class="bg-brand-100 text-brand-800 font-semibold px-2.5 py-1 rounded-md">Management</span>
-                                <span>Recent</span>
-                            </div>
-                            <h3 class="font-bold text-slate-900 text-base">TownSq Portal Access</h3>
-                            <p class="text-slate-600 text-xs sm:text-sm mt-2 leading-relaxed">
-                                All Willow Bend homeowners are encouraged to log in at <strong>app.townsq.io</strong> to manage account ledgers, view notices, and submit ARC applications.
-                            </p>
-                        </div>
-                        <div class="mt-6 pt-4 border-t border-slate-200 flex items-center justify-between text-xs">
-                            <span class="text-slate-500">Board of Trustees</span>
-                            <a href="https://app.townsq.io/" target="_blank" rel="noopener noreferrer" class="text-brand-700 font-bold hover:underline">Log in &rarr;</a>
-                        </div>
+                <div class="p-6 rounded-2xl bg-slate-50 border border-slate-200/80 hover:shadow-md transition-shadow">
+                    <div class="w-12 h-12 bg-blue-100 text-blue-700 rounded-xl flex items-center justify-center mb-4">
+                        <i data-lucide="scale" class="w-6 h-6"></i>
                     </div>
-
-                    <!-- Announcement 2 -->
-                    <div class="bg-slate-50 rounded-2xl p-6 border border-slate-200 flex flex-col justify-between">
-                        <div>
-                            <div class="flex items-center justify-between text-xs text-slate-500 mb-3">
-                                <span class="bg-amber-100 text-amber-800 font-semibold px-2.5 py-1 rounded-md">Architectural</span>
-                                <span>Notice</span>
-                            </div>
-                            <h3 class="font-bold text-slate-900 text-base">Spring Improvement Reminders</h3>
-                            <p class="text-slate-600 text-xs sm:text-sm mt-2 leading-relaxed">
-                                Planning spring upgrades like decks, fences, or sheds? Please submit architectural plans at least 30 business days prior to starting work.
-                            </p>
-                        </div>
-                        <div class="mt-6 pt-4 border-t border-slate-200 flex items-center justify-between text-xs">
-                            <span class="text-slate-500">ARC Committee</span>
-                            <a href="#townsq-arc" class="text-brand-700 font-bold hover:underline">Guidelines &rarr;</a>
-                        </div>
-                    </div>
-
-                    <!-- Announcement 3 -->
-                    <div class="bg-slate-50 rounded-2xl p-6 border border-slate-200 flex flex-col justify-between">
-                        <div>
-                            <div class="flex items-center justify-between text-xs text-slate-500 mb-3">
-                                <span class="bg-blue-100 text-blue-800 font-semibold px-2.5 py-1 rounded-md">Initiative</span>
-                                <span>Active</span>
-                            </div>
-                            <h3 class="font-bold text-slate-900 text-base">Common Area Maintenance Review</h3>
-                            <p class="text-slate-600 text-xs sm:text-sm mt-2 leading-relaxed">
-                                The Board is currently reviewing pond aeration options and vendor contracts to optimize community reserve funds while improving green spaces.
-                            </p>
-                        </div>
-                        <div class="mt-6 pt-4 border-t border-slate-200 flex items-center justify-between text-xs">
-                            <span class="text-slate-500">HOA Board</span>
-                            <a href="#board" class="text-brand-700 font-bold hover:underline">Board Info &rarr;</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- TownSq & ARC Guidance Section -->
-        <section id="townsq-arc" class="py-16 bg-slate-100">
-            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-                
-                <div class="text-center max-w-3xl mx-auto mb-10">
-                    <span class="text-brand-700 font-semibold text-xs sm:text-sm uppercase tracking-wider">Associa Management Integration</span>
-                    <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1">Architectural Review & TownSq Portal</h2>
-                    <p class="text-slate-600 text-sm sm:text-base mt-2">
-                        All exterior home modifications in the Willow Bend community require written approval prior to construction. Requests are processed officially through Associa on TownSq.
+                    <h3 class="text-lg font-bold text-slate-900 mb-2">Community Governance</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        Governed by an elected volunteer Board of Directors operating under our Code of Regulations, Bylaws, and Declaration of Covenants.
                     </p>
                 </div>
-
-                <!-- Guidance Feature Box -->
-                <div class="bg-white rounded-3xl p-6 sm:p-10 shadow-lg border border-slate-200/80">
-                    <div class="flex flex-col md:flex-row gap-8 items-center">
-                        <div class="w-20 h-20 bg-brand-700 text-white rounded-2xl flex items-center justify-center text-3xl shrink-0 shadow-md">
-                            <i class="fa-solid fa-house-circle-check"></i>
-                        </div>
-                        <div class="space-y-2 text-left flex-grow">
-                            <div class="inline-block bg-brand-100 text-brand-800 font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">Direct Portal Submission</div>
-                            <h3 class="text-xl sm:text-2xl font-bold text-slate-900">Official Submission via https://app.townsq.io/</h3>
-                            <p class="text-slate-600 text-sm leading-relaxed">
-                                To ensure compliance, timely tracking, and permanent recordkeeping, <strong>all Architectural Requests are handled directly through TownSq</strong>. Do not submit paper or informal requests.
-                            </p>
-                        </div>
-                    </div>
-
-                    <hr class="my-8 border-slate-200">
-
-                    <!-- How to submit steps -->
-                    <h4 class="font-bold text-slate-900 text-base mb-4">How to Submit an Architectural Request (ARC):</h4>
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                        <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200">
-                            <div class="w-8 h-8 bg-brand-700 text-white rounded-lg flex items-center justify-center font-bold text-sm mb-3">1</div>
-                            <h5 class="font-bold text-slate-900 text-sm">Visit app.townsq.io</h5>
-                            <p class="text-slate-600 text-xs mt-1">Log in with your homeowner credentials at <a href="https://app.townsq.io/" target="_blank" rel="noopener noreferrer" class="text-brand-700 underline font-semibold">app.townsq.io</a> or the TownSq mobile app.</p>
-                        </div>
-
-                        <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200">
-                            <div class="w-8 h-8 bg-brand-700 text-white rounded-lg flex items-center justify-center font-bold text-sm mb-3">2</div>
-                            <h5 class="font-bold text-slate-900 text-sm">Navigate to Requests</h5>
-                            <p class="text-slate-600 text-xs mt-1">Click on <strong>Requests</strong> in the sidebar and choose <strong>Architectural Review</strong>.</p>
-                        </div>
-
-                        <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200">
-                            <div class="w-8 h-8 bg-brand-700 text-white rounded-lg flex items-center justify-center font-bold text-sm mb-3">3</div>
-                            <h5 class="font-bold text-slate-900 text-sm">Attach Site Plans</h5>
-                            <p class="text-slate-600 text-xs mt-1">Upload plot maps, contractor specs, materials, and color swatches, then submit for review.</p>
-                        </div>
-                    </div>
-
-                    <!-- Direct Portal Buttons -->
-                    <div class="mt-8 pt-4 flex flex-col sm:flex-row gap-4 justify-center items-center">
-                        <a href="https://app.townsq.io/" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-brand-700 hover:bg-brand-800 text-white font-bold px-8 py-4 rounded-xl shadow-md transition">
-                            <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                            <span>Open TownSq Portal (https://app.townsq.io/)</span>
-                        </a>
-                        <a href="#contact" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-slate-100 hover:bg-slate-200 text-slate-800 font-semibold px-6 py-4 rounded-xl border border-slate-300 transition">
-                            <i class="fa-solid fa-headset"></i>
-                            <span>Associa Customer Support Info</span>
-                        </a>
-                    </div>
-                </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Document Repository Section -->
-        <section id="documents" class="py-16 bg-white border-b border-slate-200">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center max-w-2xl mx-auto mb-10">
-                    <span class="text-brand-700 font-semibold text-xs sm:text-sm uppercase tracking-wider">Governance Library</span>
-                    <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1">Official Document Repository</h2>
-                    <p class="text-slate-600 text-sm mt-2">Access governing documents for Willow Home Owners Association, Inc.</p>
-                </div>
-
-                <!-- Document Filter Tabs -->
-                <div class="flex flex-wrap justify-center gap-2 mb-8" id="docFilterContainer">
-                    <button onclick="filterDocs('all')" class="doc-filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-brand-700 text-white transition" data-filter="all">All Documents</button>
-                    <button onclick="filterDocs('governance')" class="doc-filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-slate-100 text-slate-600 hover:bg-slate-200 transition" data-filter="governance">Governance & CC&Rs</button>
-                    <button onclick="filterDocs('guidelines')" class="doc-filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-slate-100 text-slate-600 hover:bg-slate-200 transition" data-filter="guidelines">Design Guidelines</button>
-                    <button onclick="filterDocs('financials')" class="doc-filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-slate-100 text-slate-600 hover:bg-slate-200 transition" data-filter="financials">Financials & Minutes</button>
-                </div>
-
-                <!-- Documents Grid -->
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="docGrid">
-                    
-                    <!-- Doc Item 1 -->
-                    <div class="doc-card bg-slate-50 p-6 rounded-2xl border border-slate-200 shadow-sm flex flex-col justify-between" data-category="governance">
-                        <div>
-                            <div class="flex items-center justify-between mb-3">
-                                <div class="w-10 h-10 bg-red-100 text-red-600 rounded-xl flex items-center justify-center font-bold">
-                                    <i class="fa-solid fa-file-pdf text-xl"></i>
-                                </div>
-                                <span class="text-xs font-bold px-2.5 py-1 bg-white border border-slate-200 text-slate-600 rounded-md">Governance</span>
-                            </div>
-                            <h3 class="font-bold text-slate-900 text-base">Deed of Restrictions & CC&Rs</h3>
-                            <p class="text-slate-500 text-xs mt-2 leading-relaxed">Master covenants, land use policies, structural minimums, and maintenance obligations for Willow Bend.</p>
-                        </div>
-                        <div class="mt-6 pt-4 border-t border-slate-200">
-                            <button onclick="openDocModal('Deed of Restrictions & CC&Rs')" class="w-full text-brand-700 hover:text-brand-800 font-semibold text-xs sm:text-sm inline-flex items-center justify-between">
-                                <span>Preview Document</span>
-                                <i class="fa-solid fa-arrow-down-to-line"></i>
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Doc Item 2 -->
-                    <div class="doc-card bg-slate-50 p-6 rounded-2xl border border-slate-200 shadow-sm flex flex-col justify-between" data-category="guidelines">
-                        <div>
-                            <div class="flex items-center justify-between mb-3">
-                                <div class="w-10 h-10 bg-amber-100 text-amber-600 rounded-xl flex items-center justify-center font-bold">
-                                    <i class="fa-solid fa-ruler-combined text-xl"></i>
-                                </div>
-                                <span class="text-xs font-bold px-2.5 py-1 bg-white border border-slate-200 text-slate-600 rounded-md">Guidelines</span>
-                            </div>
-                            <h3 class="font-bold text-slate-900 text-base">Architectural Design Manual</h3>
-                            <p class="text-slate-500 text-xs mt-2 leading-relaxed">Fence heights (6ft deck/privacy, 48" split-rail), roof pitch standards (6/12+), shed sizes, and exterior material standards.</p>
-                        </div>
-                        <div class="mt-6 pt-4 border-t border-slate-200">
-                            <button onclick="openDocModal('Architectural Design Manual')" class="w-full text-brand-700 hover:text-brand-800 font-semibold text-xs sm:text-sm inline-flex items-center justify-between">
-                                <span>Preview Document</span>
-                                <i class="fa-solid fa-arrow-down-to-line"></i>
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Doc Item 3 -->
-                    <div class="doc-card bg-slate-50 p-6 rounded-2xl border border-slate-200 shadow-sm flex flex-col justify-between" data-category="governance">
-                        <div>
-                            <div class="flex items-center justify-between mb-3">
-                                <div class="w-10 h-10 bg-red-100 text-red-600 rounded-xl flex items-center justify-center font-bold">
-                                    <i class="fa-solid fa-gavel text-xl"></i>
-                                </div>
-                                <span class="text-xs font-bold px-2.5 py-1 bg-white border border-slate-200 text-slate-600 rounded-md">Governance</span>
-                            </div>
-                            <h3 class="font-bold text-slate-900 text-base">Code of Regulations & Bylaws</h3>
-                            <p class="text-slate-500 text-xs mt-2 leading-relaxed">Board structure, election procedures, voting quorum rules, meeting schedules, and corporate powers.</p>
-                        </div>
-                        <div class="mt-6 pt-4 border-t border-slate-200">
-                            <button onclick="openDocModal('Code of Regulations & Bylaws')" class="w-full text-brand-700 hover:text-brand-800 font-semibold text-xs sm:text-sm inline-flex items-center justify-between">
-                                <span>Preview Document</span>
-                                <i class="fa-solid fa-arrow-down-to-line"></i>
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Doc Item 4 -->
-                    <div class="doc-card bg-slate-50 p-6 rounded-2xl border border-slate-200 shadow-sm flex flex-col justify-between" data-category="financials">
-                        <div>
-                            <div class="flex items-center justify-between mb-3">
-                                <div class="w-10 h-10 bg-emerald-100 text-emerald-600 rounded-xl flex items-center justify-center font-bold">
-                                    <i class="fa-solid fa-calculator text-xl"></i>
-                                </div>
-                                <span class="text-xs font-bold px-2.5 py-1 bg-white border border-slate-200 text-slate-600 rounded-md">Financials</span>
-                            </div>
-                            <h3 class="font-bold text-slate-900 text-base">Annual Assessment & Budget</h3>
-                            <p class="text-slate-500 text-xs mt-2 leading-relaxed">Summary of operating budgets, reserve funds, common area landscape expenses, and annual dues allocation.</p>
-                        </div>
-                        <div class="mt-6 pt-4 border-t border-slate-200">
-                            <a href="https://app.townsq.io/" target="_blank" rel="noopener noreferrer" class="w-full text-brand-700 hover:text-brand-800 font-semibold text-xs sm:text-sm inline-flex items-center justify-between">
-                                <span>Access Ledger on TownSq</span>
-                                <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- Doc Item 5 -->
-                    <div class="doc-card bg-slate-50 p-6 rounded-2xl border border-slate-200 shadow-sm flex flex-col justify-between" data-category="financials">
-                        <div>
-                            <div class="flex items-center justify-between mb-3">
-                                <div class="w-10 h-10 bg-blue-100 text-blue-600 rounded-xl flex items-center justify-center font-bold">
-                                    <i class="fa-solid fa-users text-xl"></i>
-                                </div>
-                                <span class="text-xs font-bold px-2.5 py-1 bg-white border border-slate-200 text-slate-600 rounded-md">Minutes</span>
-                            </div>
-                            <h3 class="font-bold text-slate-900 text-base">Annual Meeting Minutes</h3>
-                            <p class="text-slate-500 text-xs mt-2 leading-relaxed">Official records of board trustee elections, community discussions, and voting outcomes.</p>
-                        </div>
-                        <div class="mt-6 pt-4 border-t border-slate-200">
-                            <a href="https://app.townsq.io/" target="_blank" rel="noopener noreferrer" class="w-full text-brand-700 hover:text-brand-800 font-semibold text-xs sm:text-sm inline-flex items-center justify-between">
-                                <span>View Minutes on TownSq</span>
-                                <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                            </a>
-                        </div>
-                    </div>
-
-                </div>
+    <!-- SECTION: Governing Documents Search & Interactive Viewer -->
+    <section id="documents" class="py-16 bg-slate-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <span class="text-xs font-bold uppercase tracking-wider text-brand-700 bg-emerald-100 px-3 py-1 rounded-full">Legal Framework</span>
+                <h2 class="text-3xl font-extrabold text-slate-900 mt-3">HOA Governing Documents</h2>
+                <p class="text-slate-600 mt-2">
+                    Search, filter, and read the official Bylaws, Code of Regulations, and Covenants for Willow Home Owners Association, Inc. inline right from this website.
+                </p>
             </div>
-        </section>
 
-        <!-- Rules & Covenants Search Section -->
-        <section id="rules" class="py-16 bg-slate-50">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center max-w-3xl mx-auto mb-10">
-                    <span class="text-brand-700 font-semibold text-xs sm:text-sm uppercase tracking-wider">Covenants Quick Search</span>
-                    <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1">Rules & Regulations Summary</h2>
-                    <p class="text-slate-600 text-sm mt-2">Search key restrictions recorded for the Willow Bend Subdivision.</p>
-                    
+            <!-- Document Search & Filter Bar -->
+            <div class="bg-white p-4 sm:p-6 rounded-2xl shadow-sm border border-slate-200 mb-8 space-y-4">
+                <div class="flex flex-col md:flex-row gap-4">
                     <!-- Search Input -->
-                    <div class="mt-6 max-w-md mx-auto relative">
-                        <i class="fa-solid fa-magnifying-glass absolute left-4 top-3.5 text-slate-400"></i>
-                        <input type="text" id="ruleSearchInput" onkeyup="searchRules()" placeholder="Search rules (e.g. fence, shed, trash, parking, pets)..." class="w-full pl-11 pr-4 py-3 rounded-xl border border-slate-300 shadow-sm focus:ring-2 focus:ring-brand-500 focus:border-brand-500 text-sm outline-none">
+                    <div class="relative flex-1">
+                        <i data-lucide="search" class="w-5 h-5 absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                        <input type="text" id="doc-search" placeholder="Search documents (e.g. 'assessments', 'meetings', 'quorum', 'elections')..." class="w-full pl-10 pr-4 py-3 bg-slate-50 border border-slate-300 rounded-xl text-slate-800 text-sm focus:outline-none focus:ring-2 focus:ring-brand-600 focus:bg-white transition-all">
                     </div>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="rulesGrid">
-                    
-                    <!-- Rule 1: Fences -->
-                    <div class="rule-card bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
-                        <div class="flex items-center gap-3 mb-3">
-                            <div class="w-10 h-10 bg-brand-50 text-brand-700 rounded-xl flex items-center justify-center font-bold">
-                                <i class="fa-solid fa-border-all"></i>
-                            </div>
-                            <h3 class="font-bold text-slate-900 text-base">Fences & Enclosures</h3>
-                        </div>
-                        <ul class="text-slate-600 text-xs sm:text-sm space-y-2 list-disc list-inside leading-relaxed">
-                            <li><strong>Privacy Fences:</strong> Restricted to rear decks/patios, maximum 6 feet high.</li>
-                            <li><strong>Yard Fences:</strong> Rear yard fences limited to split-rail style up to 48 inches.</li>
-                            <li><strong>Pool Fences:</strong> Must be ornamental; solid pool fences are prohibited.</li>
-                            <li>Requires prior ARC approval via TownSq before installation.</li>
-                        </ul>
+                    <!-- Category Filters -->
+                    <div class="flex flex-wrap gap-2 items-center" id="doc-category-filters">
+                        <button data-category="all" class="doc-filter-btn px-4 py-2.5 rounded-xl text-xs font-semibold bg-brand-800 text-white transition-colors">All Docs</button>
+                        <button data-category="bylaws" class="doc-filter-btn px-4 py-2.5 rounded-xl text-xs font-semibold bg-slate-100 text-slate-700 hover:bg-slate-200 transition-colors">Bylaws</button>
+                        <button data-category="regulations" class="doc-filter-btn px-4 py-2.5 rounded-xl text-xs font-semibold bg-slate-100 text-slate-700 hover:bg-slate-200 transition-colors">Code of Regulations</button>
+                        <button data-category="restrictions" class="doc-filter-btn px-4 py-2.5 rounded-xl text-xs font-semibold bg-slate-100 text-slate-700 hover:bg-slate-200 transition-colors">Deed Restrictions</button>
                     </div>
-
-                    <!-- Rule 2: Sheds & Outbuildings -->
-                    <div class="rule-card bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
-                        <div class="flex items-center gap-3 mb-3">
-                            <div class="w-10 h-10 bg-amber-50 text-amber-600 rounded-xl flex items-center justify-center font-bold">
-                                <i class="fa-solid fa-warehouse"></i>
-                            </div>
-                            <h3 class="font-bold text-slate-900 text-base">Sheds & Outbuildings</h3>
-                        </div>
-                        <ul class="text-slate-600 text-xs sm:text-sm space-y-2 list-disc list-inside leading-relaxed">
-                            <li>Garden sheds are strictly limited to <strong>100 square feet</strong> maximum.</li>
-                            <li>Shed siding and roofing materials must match the main house.</li>
-                            <li>Must be positioned in the rear yard behind the main home line.</li>
-                        </ul>
-                    </div>
-
-                    <!-- Rule 3: Vehicles & Parking -->
-                    <div class="rule-card bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
-                        <div class="flex items-center gap-3 mb-3">
-                            <div class="w-10 h-10 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center font-bold">
-                                <i class="fa-solid fa-car"></i>
-                            </div>
-                            <h3 class="font-bold text-slate-900 text-base">Vehicles & Parking</h3>
-                        </div>
-                        <ul class="text-slate-600 text-xs sm:text-sm space-y-2 list-disc list-inside leading-relaxed">
-                            <li>RVs, boats, trailers, commercial, or inoperative vehicles cannot be parked outside.</li>
-                            <li>Must be stored inside an enclosed garage out of view.</li>
-                            <li>Temporary loading/unloading allowed up to 48 hours max once every 30 days.</li>
-                        </ul>
-                    </div>
-
-                    <!-- Rule 4: Trash & Maintenance -->
-                    <div class="rule-card bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
-                        <div class="flex items-center gap-3 mb-3">
-                            <div class="w-10 h-10 bg-emerald-50 text-emerald-600 rounded-xl flex items-center justify-center font-bold">
-                                <i class="fa-solid fa-trash-can"></i>
-                            </div>
-                            <h3 class="font-bold text-slate-900 text-base">Trash & Property Upkeep</h3>
-                        </div>
-                        <ul class="text-slate-600 text-xs sm:text-sm space-y-2 list-disc list-inside leading-relaxed">
-                            <li>Lots must be kept clean and free of rubbish, brush, or waste dumping.</li>
-                            <li>All waste containers must be maintained in clean, sanitary condition.</li>
-                            <li>Lawns must be regularly mowed and edged.</li>
-                        </ul>
-                    </div>
-
-                    <!-- Rule 5: Pools & Saunas -->
-                    <div class="rule-card bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
-                        <div class="flex items-center gap-3 mb-3">
-                            <div class="w-10 h-10 bg-cyan-50 text-cyan-600 rounded-xl flex items-center justify-center font-bold">
-                                <i class="fa-solid fa-water-ladder"></i>
-                            </div>
-                            <h3 class="font-bold text-slate-900 text-base">Swimming Pools</h3>
-                        </div>
-                        <ul class="text-slate-600 text-xs sm:text-sm space-y-2 list-disc list-inside leading-relaxed">
-                            <li><strong>Above-ground swimming pools are strictly prohibited.</strong></li>
-                            <li>In-ground swimming pools are permitted with prior ARC approval.</li>
-                            <li>Hot tubs and saunas are permitted subject to screening.</li>
-                        </ul>
-                    </div>
-
-                    <!-- Rule 6: Pets & Animals -->
-                    <div class="rule-card bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
-                        <div class="flex items-center gap-3 mb-3">
-                            <div class="w-10 h-10 bg-purple-50 text-purple-600 rounded-xl flex items-center justify-center font-bold">
-                                <i class="fa-solid fa-dog"></i>
-                            </div>
-                            <h3 class="font-bold text-slate-900 text-base">Pets & Animals</h3>
-                        </div>
-                        <ul class="text-slate-600 text-xs sm:text-sm space-y-2 list-disc list-inside leading-relaxed">
-                            <li>Domestic household pets are permitted in reasonable numbers.</li>
-                            <li>Commercial breeding, dog runs, and outdoor kennels are prohibited.</li>
-                            <li>Pets must not be allowed to run loose or create a noise nuisance.</li>
-                        </ul>
-                    </div>
-
                 </div>
             </div>
-        </section>
 
-        <!-- Board of Trustees & Community Goals Section -->
-        <section id="board" class="py-16 bg-white border-y border-slate-200">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center max-w-3xl mx-auto mb-12">
-                    <span class="text-brand-700 font-semibold text-xs sm:text-sm uppercase tracking-wider">Association Leadership</span>
-                    <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1">Board of Trustees & Active Initiatives</h2>
-                    <p class="text-slate-600 text-sm mt-2">
-                        The Board of Trustees for Willow Home Owners Association, Inc. consists of elected resident volunteers serving the Willow Bend Community.
-                    </p>
-                </div>
-
-                <!-- Board Roles -->
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-                    
-                    <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200 text-center">
-                        <div class="w-14 h-14 bg-brand-700 text-white rounded-2xl flex items-center justify-center text-xl font-bold mx-auto mb-3 shadow-md">
-                            <i class="fa-solid fa-user-tie"></i>
-                        </div>
-                        <h3 class="font-bold text-slate-900 text-base">President</h3>
-                        <p class="text-xs text-brand-700 font-semibold mt-0.5">Willow HOA Board</p>
-                        <p class="text-slate-500 text-xs mt-2">Oversees executive governance, vendor contracts, and Associa management coordination.</p>
-                    </div>
-
-                    <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200 text-center">
-                        <div class="w-14 h-14 bg-brand-700 text-white rounded-2xl flex items-center justify-center text-xl font-bold mx-auto mb-3 shadow-md">
-                            <i class="fa-solid fa-coins"></i>
-                        </div>
-                        <h3 class="font-bold text-slate-900 text-base">Treasurer</h3>
-                        <p class="text-xs text-brand-700 font-semibold mt-0.5">Willow HOA Board</p>
-                        <p class="text-slate-500 text-xs mt-2">Monitors community budgets, reserve planning, dues collection, and annual audits.</p>
-                    </div>
-
-                    <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200 text-center">
-                        <div class="w-14 h-14 bg-brand-700 text-white rounded-2xl flex items-center justify-center text-xl font-bold mx-auto mb-3 shadow-md">
-                            <i class="fa-solid fa-file-signature"></i>
-                        </div>
-                        <h3 class="font-bold text-slate-900 text-base">Secretary</h3>
-                        <p class="text-xs text-brand-700 font-semibold mt-0.5">Willow HOA Board</p>
-                        <p class="text-slate-500 text-xs mt-2">Maintains official meeting minutes, records, notices, and resident communications.</p>
-                    </div>
-
-                    <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200 text-center">
-                        <div class="w-14 h-14 bg-brand-700 text-white rounded-2xl flex items-center justify-center text-xl font-bold mx-auto mb-3 shadow-md">
-                            <i class="fa-solid fa-users-gear"></i>
-                        </div>
-                        <h3 class="font-bold text-slate-900 text-base">Trustees At-Large</h3>
-                        <p class="text-xs text-brand-700 font-semibold mt-0.5">Willow HOA Board</p>
-                        <p class="text-slate-500 text-xs mt-2">Supports architectural review oversight, landscape inspection, and neighborhood projects.</p>
-                    </div>
-
-                </div>
-
-                <!-- Strategic Initiatives Card -->
-                <div class="bg-brand-900 text-white rounded-3xl p-8 sm:p-10 shadow-xl relative overflow-hidden">
-                    <div class="relative z-10">
-                        <span class="inline-block px-3 py-1 bg-brand-800 text-brand-200 rounded-full text-xs font-semibold uppercase tracking-wider mb-3">Community Priorities</span>
-                        <h3 class="text-xl sm:text-2xl font-bold">Active Neighborhood Initiatives</h3>
-                        
-                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
-                            <div class="bg-brand-800/80 p-5 rounded-2xl border border-brand-700">
-                                <i class="fa-solid fa-water text-amber-400 text-2xl mb-2"></i>
-                                <h4 class="font-bold text-sm text-white">Retention Pond Aeration</h4>
-                                <p class="text-slate-300 text-xs mt-1 leading-relaxed">Exploring fountain and aeration improvements to enhance water clarity and insect control.</p>
-                            </div>
-
-                            <div class="bg-brand-800/80 p-5 rounded-2xl border border-brand-700">
-                                <i class="fa-solid fa-truck-ramp-box text-amber-400 text-2xl mb-2"></i>
-                                <h4 class="font-bold text-sm text-white">Consolidated Trash Services</h4>
-                                <p class="text-slate-300 text-xs mt-1 leading-relaxed">Evaluating single-provider waste contracts to reduce heavy truck traffic and lower homeowner rates.</p>
-                            </div>
-
-                            <div class="bg-brand-800/80 p-5 rounded-2xl border border-brand-700">
-                                <i class="fa-solid fa-tree text-amber-400 text-2xl mb-2"></i>
-                                <h4 class="font-bold text-sm text-white">Common Area Landscape Review</h4>
-                                <p class="text-slate-300 text-xs mt-1 leading-relaxed">Re-bidding lawn and entryway maintenance contracts to ensure high quality at competitive rates.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </section>
-
-        <!-- Contact Section -->
-        <section id="contact" class="py-16 bg-slate-50">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-                    
-                    <!-- Management & Official Email Info -->
+            <!-- Documents Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6" id="documents-container">
+                <!-- Card 1: Code of Regulations & Bylaws -->
+                <div class="doc-card bg-white rounded-2xl border border-slate-200 p-6 flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow" data-category="bylaws regulations" data-keywords="bylaws code regulations board directors meetings quorum voting officers corporate">
                     <div>
-                        <span class="text-brand-700 font-semibold text-xs sm:text-sm uppercase tracking-wider">Get In Touch</span>
-                        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1">Contact the HOA & Associa</h2>
-                        <p class="mt-4 text-slate-600 leading-relaxed text-sm sm:text-base">
-                            For official account status, dues statements, or ARC filings, please log into TownSq or contact Associa Community Management. For general board feedback, use the contact options below.
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="p-3 bg-emerald-50 text-brand-700 rounded-xl"><i data-lucide="book-open" class="w-6 h-6"></i></span>
+                            <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">Corporate Governance</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900 mb-2">Code of Regulations & Bylaws</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed mb-4">
+                            Outlines governance structures, board officer duties, annual meeting requirements, voting rights, and corporate operations of Willow Home Owners Association, Inc.
                         </p>
+                    </div>
+                    <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
+                        <span class="text-xs text-slate-500 font-medium">14 Sections • Ref. 2024-B</span>
+                        <button onclick="openDocModal('bylaws')" class="inline-flex items-center gap-1.5 text-sm font-bold text-brand-700 hover:text-brand-900">
+                            <span>Read Inline</span>
+                            <i data-lucide="eye" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                </div>
 
-                        <div class="mt-8 space-y-4">
-                            <!-- TownSq Card -->
-                            <a href="https://app.townsq.io/" target="_blank" rel="noopener noreferrer" class="flex items-center gap-4 bg-white p-4 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition">
-                                <div class="w-11 h-11 rounded-xl bg-brand-100 text-brand-700 flex items-center justify-center font-bold shrink-0">
-                                    <i class="fa-solid fa-laptop-code text-lg"></i>
-                                </div>
-                                <div>
-                                    <div class="text-xs text-slate-500 font-medium uppercase">Associa TownSq Portal</div>
-                                    <div class="font-bold text-slate-900 text-sm sm:text-base hover:text-brand-700">https://app.townsq.io/</div>
-                                </div>
-                            </a>
+                <!-- Card 2: Declaration of Covenants & Deed Restrictions -->
+                <div class="doc-card bg-white rounded-2xl border border-slate-200 p-6 flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow" data-category="restrictions" data-keywords="covenants deed restrictions property use fences sheds alterations easement architectural easements">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="p-3 bg-amber-50 text-amberGold-600 rounded-xl"><i data-lucide="shield" class="w-6 h-6"></i></span>
+                            <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">Property Covenants</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900 mb-2">Declaration of Covenants</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed mb-4">
+                            Establishes property use restrictions, architectural standards, fence guidelines, common area maintenance duties, and individual lot owner obligations.
+                        </p>
+                    </div>
+                    <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
+                        <span class="text-xs text-slate-500 font-medium">8 Articles • Official Deed</span>
+                        <button onclick="openDocModal('covenants')" class="inline-flex items-center gap-1.5 text-sm font-bold text-brand-700 hover:text-brand-900">
+                            <span>Read Inline</span>
+                            <i data-lucide="eye" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                </div>
 
-                            <!-- Email Card -->
-                            <a href="mailto:board@willowbendhoa.org" class="flex items-center gap-4 bg-white p-4 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition">
-                                <div class="w-11 h-11 rounded-xl bg-brand-100 text-brand-700 flex items-center justify-center font-bold shrink-0">
-                                    <i class="fa-solid fa-envelope text-lg"></i>
-                                </div>
-                                <div>
-                                    <div class="text-xs text-slate-500 font-medium uppercase">Official Board Email</div>
-                                    <div class="font-bold text-slate-900 text-sm sm:text-base hover:text-brand-700">board@willowbendhoa.org</div>
-                                </div>
-                            </a>
+                <!-- Card 3: Articles of Incorporation -->
+                <div class="doc-card bg-white rounded-2xl border border-slate-200 p-6 flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow" data-category="bylaws" data-keywords="articles incorporation state non-profit entity charter corporate">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="p-3 bg-blue-50 text-blue-700 rounded-xl"><i data-lucide="file-check" class="w-6 h-6"></i></span>
+                            <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">Legal Entity Charter</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900 mb-2">Articles of Incorporation</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed mb-4">
+                            The founding non-profit legal entity filings for Willow Home Owners Association, Inc. registered under state non-profit corporation statutes.
+                        </p>
+                    </div>
+                    <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
+                        <span class="text-xs text-slate-500 font-medium">Official Filings</span>
+                        <button onclick="openDocModal('articles')" class="inline-flex items-center gap-1.5 text-sm font-bold text-brand-700 hover:text-brand-900">
+                            <span>Read Inline</span>
+                            <i data-lucide="eye" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-                            <!-- Phone Care -->
-                            <div class="flex items-center gap-4 bg-white p-4 rounded-2xl border border-slate-200 shadow-sm">
-                                <div class="w-11 h-11 rounded-xl bg-brand-100 text-brand-700 flex items-center justify-center font-bold shrink-0">
-                                    <i class="fa-solid fa-headset text-lg"></i>
-                                </div>
-                                <div>
-                                    <div class="text-xs text-slate-500 font-medium uppercase">Associa Customer Care</div>
-                                    <div class="font-bold text-slate-900 text-sm sm:text-base">1-800-870-0010</div>
-                                </div>
+    <!-- SECTION: Searchable Community Rules & Regulations Cards -->
+    <section id="rules" class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <span class="text-xs font-bold uppercase tracking-wider text-brand-700 bg-emerald-100 px-3 py-1 rounded-full">Quick Reference</span>
+                <h2 class="text-3xl font-extrabold text-slate-900 mt-3">Community Rules & Guidelines</h2>
+                <p class="text-slate-600 mt-2">
+                    Key rules enforced within the Willow Bend Community. Filter or search topics below for immediate answers.
+                </p>
+            </div>
+
+            <!-- Rules Filter Tabs -->
+            <div class="flex flex-wrap justify-center gap-2 mb-8" id="rules-filter-bar">
+                <button data-rule-cat="all" class="rule-tab-btn active px-4 py-2 rounded-xl text-xs font-bold bg-brand-800 text-white shadow-sm transition-all">All Rules</button>
+                <button data-rule-cat="fences" class="rule-tab-btn px-4 py-2 rounded-xl text-xs font-bold bg-slate-100 text-slate-700 hover:bg-slate-200 transition-all">Fences & Structures</button>
+                <button data-rule-cat="parking" class="rule-tab-btn px-4 py-2 rounded-xl text-xs font-bold bg-slate-100 text-slate-700 hover:bg-slate-200 transition-all">Parking & Vehicles</button>
+                <button data-rule-cat="pets" class="rule-tab-btn px-4 py-2 rounded-xl text-xs font-bold bg-slate-100 text-slate-700 hover:bg-slate-200 transition-all">Pets</button>
+                <button data-rule-cat="trash" class="rule-tab-btn px-4 py-2 rounded-xl text-xs font-bold bg-slate-100 text-slate-700 hover:bg-slate-200 transition-all">Trash & Waste</button>
+            </div>
+
+            <!-- Rules Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="rules-grid">
+                <!-- Rule 1: Fences -->
+                <div class="rule-card p-6 rounded-2xl border border-slate-200 bg-slate-50 hover:border-brand-600/40 transition-all" data-rule="fences">
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="p-2 bg-emerald-100 text-brand-800 rounded-lg"><i data-lucide="fence" class="w-5 h-5"></i></div>
+                        <h4 class="font-bold text-slate-900 text-base">Fence Standards</h4>
+                    </div>
+                    <p class="text-slate-600 text-sm leading-relaxed mb-3">
+                        All perimeter fencing requires prior ARC written approval. Fences must not exceed 6 feet in height and must be constructed of approved shadowbox wood or vinyl materials. Chain link is strictly prohibited.
+                    </p>
+                    <span class="inline-block text-xs font-semibold text-brand-700 bg-emerald-50 px-2.5 py-1 rounded">ARC Approval Required</span>
+                </div>
+
+                <!-- Rule 2: Parking -->
+                <div class="rule-card p-6 rounded-2xl border border-slate-200 bg-slate-50 hover:border-brand-600/40 transition-all" data-rule="parking">
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="p-2 bg-blue-100 text-blue-800 rounded-lg"><i data-lucide="car" class="w-5 h-5"></i></div>
+                        <h4 class="font-bold text-slate-900 text-base">Vehicles & Parking</h4>
+                    </div>
+                    <p class="text-slate-600 text-sm leading-relaxed mb-3">
+                        Overnight street parking is prohibited to maintain emergency access. Commercial vehicles, RVs, boats, and trailers must be parked inside closed garages or stored offsite.
+                    </p>
+                    <span class="inline-block text-xs font-semibold text-slate-600 bg-slate-200 px-2.5 py-1 rounded">No Overnight Street Parking</span>
+                </div>
+
+                <!-- Rule 3: Pets -->
+                <div class="rule-card p-6 rounded-2xl border border-slate-200 bg-slate-50 hover:border-brand-600/40 transition-all" data-rule="pets">
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="p-2 bg-amber-100 text-amber-800 rounded-lg"><i data-lucide="dog" class="w-5 h-5"></i></div>
+                        <h4 class="font-bold text-slate-900 text-base">Pet Guidelines</h4>
+                    </div>
+                    <p class="text-slate-600 text-sm leading-relaxed mb-3">
+                        Household pets are limited to customary domesticated animals. All dogs must be kept on a physical leash when on common areas. Owners must immediately clean up after their pets.
+                    </p>
+                    <span class="inline-block text-xs font-semibold text-amber-800 bg-amber-50 px-2.5 py-1 rounded">Leash & Waste Compliance</span>
+                </div>
+
+                <!-- Rule 4: Trash Containers -->
+                <div class="rule-card p-6 rounded-2xl border border-slate-200 bg-slate-50 hover:border-brand-600/40 transition-all" data-rule="trash">
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="p-2 bg-slate-200 text-slate-800 rounded-lg"><i data-lucide="trash-2" class="w-5 h-5"></i></div>
+                        <h4 class="font-bold text-slate-900 text-base">Trash & Recycling Cans</h4>
+                    </div>
+                    <p class="text-slate-600 text-sm leading-relaxed mb-3">
+                        Trash containers may be placed curb-side no earlier than 6:00 PM the evening prior to scheduled collection. Cans must be stored out of sight inside garages or behind fencing on non-pickup days.
+                    </p>
+                    <span class="inline-block text-xs font-semibold text-slate-700 bg-slate-200 px-2.5 py-1 rounded">Curbside Pickup Timing</span>
+                </div>
+
+                <!-- Rule 5: Sheds & Outbuildings -->
+                <div class="rule-card p-6 rounded-2xl border border-slate-200 bg-slate-50 hover:border-brand-600/40 transition-all" data-rule="fences">
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="p-2 bg-emerald-100 text-brand-800 rounded-lg"><i data-lucide="home" class="w-5 h-5"></i></div>
+                        <h4 class="font-bold text-slate-900 text-base">Sheds & Storage Structures</h4>
+                    </div>
+                    <p class="text-slate-600 text-sm leading-relaxed mb-3">
+                        Detached sheds must match the primary home's exterior shingles and paint colors. Sheds must conform to rear setback requirements and receive prior ARC approval.
+                    </p>
+                    <span class="inline-block text-xs font-semibold text-brand-700 bg-emerald-50 px-2.5 py-1 rounded">ARC Approval Required</span>
+                </div>
+
+                <!-- Rule 6: Landscaping & Lawn Care -->
+                <div class="rule-card p-6 rounded-2xl border border-slate-200 bg-slate-50 hover:border-brand-600/40 transition-all" data-rule="all">
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="p-2 bg-green-100 text-green-800 rounded-lg"><i data-lucide="flower-2" class="w-5 h-5"></i></div>
+                        <h4 class="font-bold text-slate-900 text-base">Lawn & Property Maintenance</h4>
+                    </div>
+                    <p class="text-slate-600 text-sm leading-relaxed mb-3">
+                        Turfgrass must be regularly mowed and kept under 5 inches in height. Weeds must be managed, and landscaping beds kept free of debris to maintain high community aesthetics.
+                    </p>
+                    <span class="inline-block text-xs font-semibold text-green-800 bg-green-50 px-2.5 py-1 rounded">Regular Maintenance</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION: Streamlined ARC Workflow -->
+    <section id="arc" class="py-16 bg-slate-900 text-white relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                
+                <div class="lg:col-span-7 space-y-5">
+                    <span class="text-xs font-bold uppercase tracking-wider text-amberGold-400 bg-amberGold-500/10 border border-amberGold-500/30 px-3 py-1 rounded-full">Architectural Review</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-white">Planning Exterior Improvements?</h2>
+                    <p class="text-slate-300 leading-relaxed text-base">
+                        To protect property values, any modifications to the exterior of your home or lot—such as installing a fence, shed, patio, roof replacement, or painting—require prior approval from the Architectural Review Committee (ARC).
+                    </p>
+
+                    <div class="space-y-3 pt-2">
+                        <div class="flex items-start gap-3">
+                            <div class="p-1 bg-emerald-500/20 text-emerald-400 rounded mt-0.5"><i data-lucide="check" class="w-4 h-4"></i></div>
+                            <span class="text-sm text-slate-200">Submit plans, plot maps, and contractor specs directly via TownSq.</span>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <div class="p-1 bg-emerald-500/20 text-emerald-400 rounded mt-0.5"><i data-lucide="check" class="w-4 h-4"></i></div>
+                            <span class="text-sm text-slate-200">Track review status and receive formal electronic decision letters online.</span>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <div class="p-1 bg-emerald-500/20 text-emerald-400 rounded mt-0.5"><i data-lucide="check" class="w-4 h-4"></i></div>
+                            <span class="text-sm text-slate-200">Average review timeframe is under 14 business days.</span>
+                        </div>
+                    </div>
+
+                    <div class="pt-4">
+                        <a href="https://app.townsq.io/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-amberGold-500 hover:bg-amberGold-600 text-slate-950 font-bold px-6 py-3.5 rounded-xl transition-all shadow-lg text-base">
+                            <span>Submit ARC Request in TownSq</span>
+                            <i data-lucide="external-link" class="w-5 h-5"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Streamlined Quick Checklist Card -->
+                <div class="lg:col-span-5 bg-slate-800/90 border border-slate-700/80 rounded-2xl p-6 sm:p-8 backdrop-blur-sm">
+                    <h3 class="text-xl font-bold text-white mb-4 flex items-center gap-2">
+                        <i data-lucide="list-checks" class="text-amberGold-400 w-5 h-5"></i>
+                        ARC Submission Checklist
+                    </h3>
+                    <ul class="space-y-3 text-sm text-slate-300">
+                        <li class="p-3 bg-slate-900/60 rounded-xl border border-slate-700/50 flex items-center justify-between">
+                            <span>1. Property Lot Survey / Map</span>
+                            <span class="text-xs text-amberGold-400 font-medium">Required</span>
+                        </li>
+                        <li class="p-3 bg-slate-900/60 rounded-xl border border-slate-700/50 flex items-center justify-between">
+                            <span>2. Material & Color Samples</span>
+                            <span class="text-xs text-amberGold-400 font-medium">Required</span>
+                        </li>
+                        <li class="p-3 bg-slate-900/60 rounded-xl border border-slate-700/50 flex items-center justify-between">
+                            <span>3. Dimensions & Height Specs</span>
+                            <span class="text-xs text-amberGold-400 font-medium">Required</span>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION: Board & Active Community Initiatives -->
+    <section id="initiatives" class="py-16 bg-slate-50 border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <span class="text-xs font-bold uppercase tracking-wider text-brand-700 bg-emerald-100 px-3 py-1 rounded-full">Community Updates</span>
+                <h2 class="text-3xl font-extrabold text-slate-900 mt-3">Board Focus & Current Initiatives</h2>
+                <p class="text-slate-600 mt-2">
+                    Active capital improvement projects and operational reviews currently underway by the Willow Home Owners Association, Inc. Board of Directors.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Initiative 1 -->
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm relative overflow-hidden flex flex-col justify-between">
+                    <div class="top-0 left-0 right-0 h-1.5 bg-brand-600 absolute"></div>
+                    <div>
+                        <div class="flex justify-between items-center mb-3">
+                            <span class="text-xs font-bold uppercase tracking-wider text-brand-700 bg-emerald-50 px-2.5 py-1 rounded">Water Quality</span>
+                            <span class="text-xs text-slate-400 font-medium">Active Project</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 mb-2">Pond Aeration & Fountain System</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed mb-4">
+                            Installation and electrical maintenance of commercial pond aeration fountains to prevent algae buildup, oxygenate water, and maintain stormwater basin health in Willow Bend.
+                        </p>
+                    </div>
+                    <div class="pt-3 border-t border-slate-100 flex items-center gap-2 text-xs font-semibold text-slate-500">
+                        <i data-lucide="clock" class="w-4 h-4 text-brand-600"></i>
+                        <span>Expected Completion: Spring Q2</span>
+                    </div>
+                </div>
+
+                <!-- Initiative 2 -->
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm relative overflow-hidden flex flex-col justify-between">
+                    <div class="top-0 left-0 right-0 h-1.5 bg-amberGold-500 absolute"></div>
+                    <div>
+                        <div class="flex justify-between items-center mb-3">
+                            <span class="text-xs font-bold uppercase tracking-wider text-amber-800 bg-amber-50 px-2.5 py-1 rounded">Cost Optimization</span>
+                            <span class="text-xs text-slate-400 font-medium">Vendor Contract</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 mb-2">Waste Contract Re-Negotiation</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed mb-4">
+                            Evaluating community-wide trash and recycling vendor contracts to ensure competitive bulk rates, reliable pickup service, and heavy equipment wear reduction on neighborhood streets.
+                        </p>
+                    </div>
+                    <div class="pt-3 border-t border-slate-100 flex items-center gap-2 text-xs font-semibold text-slate-500">
+                        <i data-lucide="refresh-cw" class="w-4 h-4 text-amberGold-500"></i>
+                        <span>Under Board Review</span>
+                    </div>
+                </div>
+
+                <!-- Initiative 3 -->
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm relative overflow-hidden flex flex-col justify-between">
+                    <div class="top-0 left-0 right-0 h-1.5 bg-blue-600 absolute"></div>
+                    <div>
+                        <div class="flex justify-between items-center mb-3">
+                            <span class="text-xs font-bold uppercase tracking-wider text-blue-700 bg-blue-50 px-2.5 py-1 rounded">Common Areas</span>
+                            <span class="text-xs text-slate-400 font-medium">Bidding Phase</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 mb-2">Landscaping RFP & Tree Trimming</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed mb-4">
+                            Reviewing landscape maintenance RFPs for entrance monument maintenance, turf fertilizing, and seasonal trimming of common area trees along main corridors.
+                        </p>
+                    </div>
+                    <div class="pt-3 border-t border-slate-100 flex items-center gap-2 text-xs font-semibold text-slate-500">
+                        <i data-lucide="file-spreadsheets" class="w-4 h-4 text-blue-600"></i>
+                        <span>Bids Open for Vendor Selection</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION: Contact & Board Communication -->
+    <section id="contact" class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-4xl mx-auto bg-slate-900 text-white rounded-3xl p-8 sm:p-12 shadow-xl relative overflow-hidden">
+                <div class="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-wider text-emerald-400 bg-emerald-950 px-3 py-1 rounded-full border border-emerald-800">Get In Touch</span>
+                        <h2 class="text-3xl font-bold mt-4 text-white">Have Questions or Feedback?</h2>
+                        <p class="text-slate-300 text-sm leading-relaxed mt-3">
+                            For official account inquiries or fee payment issues, please log into your TownSq account. For general HOA questions or community concerns, reach out directly to the Board of Directors.
+                        </p>
+                        
+                        <div class="mt-6 space-y-3">
+                            <div class="flex items-center gap-3 text-sm text-slate-200">
+                                <div class="p-2 bg-slate-800 rounded-lg text-emerald-400"><i data-lucide="mail" class="w-4 h-4"></i></div>
+                                <span>Official Corporate Contact: <strong>Willow Home Owners Association, Inc.</strong></span>
+                            </div>
+                            <div class="flex items-center gap-3 text-sm text-slate-200">
+                                <div class="p-2 bg-slate-800 rounded-lg text-emerald-400"><i data-lucide="map-pin" class="w-4 h-4"></i></div>
+                                <span>Willow Bend Community Common Grounds</span>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Contact Form -->
-                    <div class="bg-white p-8 rounded-3xl border border-slate-200 shadow-md">
-                        <h3 class="text-xl font-bold text-slate-900 mb-1">Send a Message to the Board</h3>
-                        <p class="text-slate-600 text-xs sm:text-sm mb-6">Submissions sent here are received directly by the Board of Trustees.</p>
-                        
-                        <form id="contactForm" onsubmit="handleContactSubmit(event)" class="space-y-4">
+                    <div class="bg-slate-800 p-6 rounded-2xl border border-slate-700">
+                        <h3 class="text-lg font-bold text-white mb-4">Direct Message to Board</h3>
+                        <form id="contact-form" onsubmit="handleContactSubmit(event)" class="space-y-4">
                             <div>
-                                <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1">Full Name</label>
-                                <input type="text" required placeholder="Jane Doe" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 text-sm outline-none">
+                                <label class="block text-xs font-semibold text-slate-300 mb-1">Your Name</label>
+                                <input type="text" required class="w-full px-3.5 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-sm text-white focus:outline-none focus:ring-2 focus:ring-brand-600">
                             </div>
                             <div>
-                                <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1">Willow Bend Address</label>
-                                <input type="text" required placeholder="123 Willow Bend Drive" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 text-sm outline-none">
+                                <label class="block text-xs font-semibold text-slate-300 mb-1">Willow Bend Address</label>
+                                <input type="text" required class="w-full px-3.5 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-sm text-white focus:outline-none focus:ring-2 focus:ring-brand-600">
                             </div>
                             <div>
-                                <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1">Email Address</label>
-                                <input type="email" required placeholder="jane@example.com" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 text-sm outline-none">
+                                <label class="block text-xs font-semibold text-slate-300 mb-1">Message</label>
+                                <textarea rows="3" required class="w-full px-3.5 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-sm text-white focus:outline-none focus:ring-2 focus:ring-brand-600"></textarea>
                             </div>
-                            <div>
-                                <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1">Message</label>
-                                <textarea rows="3" required placeholder="How can the Board assist you?" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 text-sm outline-none"></textarea>
-                            </div>
-                            <button type="submit" class="w-full bg-brand-700 hover:bg-brand-800 text-white font-bold py-3.5 rounded-xl text-sm transition shadow-md">
+                            <button type="submit" class="w-full bg-brand-600 hover:bg-brand-700 text-white font-bold py-3 rounded-xl transition-colors text-sm shadow-md">
                                 Send Message
                             </button>
                         </form>
+                        <div id="contact-success" class="hidden text-center text-xs text-emerald-400 font-semibold mt-3 p-2 bg-emerald-950/80 border border-emerald-800 rounded-lg">
+                            Thank you! Your message has been routed to the Board.
+                        </div>
                     </div>
-
                 </div>
             </div>
-        </section>
-
-    </main>
+        </div>
+    </section>
 
     <!-- Footer -->
-    <footer class="bg-slate-900 text-slate-400 py-12 border-t border-slate-800">
+    <footer class="bg-slate-950 text-slate-400 py-12 border-t border-slate-800 mt-auto">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col md:flex-row justify-between items-center gap-6 text-center md:text-left">
-                <div>
-                    <div class="flex items-center justify-center md:justify-start gap-2 text-white font-bold text-lg">
-                        <i class="fa-solid fa-tree text-brand-500"></i>
-                        <span>Willow Home Owners Association, Inc.</span>
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                
+                <div class="flex items-center gap-3">
+                    <div class="p-2 bg-brand-800 text-white rounded-lg">
+                        <i data-lucide="trees" class="w-5 h-5"></i>
                     </div>
-                    <p class="text-xs text-slate-400 mt-1">
-                        &copy; <span id="year"></span> Willow Home Owners Association, Inc. All rights reserved. Serving the Willow Bend Community.
-                    </p>
+                    <div>
+                        <div class="text-white font-bold text-sm">Willow Home Owners Association, Inc.</div>
+                        <div class="text-xs text-slate-500">Willow Bend Community</div>
+                    </div>
                 </div>
 
-                <div class="flex flex-wrap justify-center gap-6 text-xs font-semibold text-slate-400">
-                    <a href="#about" class="hover:text-white transition">About</a>
-                    <a href="#townsq-arc" class="hover:text-white transition">TownSq ARC</a>
-                    <a href="#documents" class="hover:text-white transition">Documents</a>
-                    <a href="#rules" class="hover:text-white transition">Rules</a>
-                    <a href="https://app.townsq.io/" target="_blank" rel="noopener noreferrer" class="hover:text-white transition text-brand-400">app.townsq.io</a>
+                <div class="flex flex-wrap justify-center gap-6 text-xs font-medium">
+                    <a href="#documents" class="hover:text-white transition-colors">Bylaws & Covenants</a>
+                    <a href="#rules" class="hover:text-white transition-colors">Community Rules</a>
+                    <a href="#arc" class="hover:text-white transition-colors">ARC Process</a>
+                    <a href="https://app.townsq.io/" target="_blank" rel="noopener noreferrer" class="text-amberGold-400 hover:underline">TownSq Portal</a>
+                </div>
+
+                <div class="text-xs text-slate-500 text-center md:text-right">
+                    &copy; Willow Home Owners Association, Inc. All Rights Reserved.
                 </div>
             </div>
         </div>
     </footer>
 
-    <!-- Document Preview Modal -->
-    <div id="docModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-        <div class="bg-white rounded-3xl max-w-md w-full p-6 sm:p-8 shadow-2xl relative">
-            <button onclick="closeDocModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 p-2">
-                <i class="fa-solid fa-xmark text-xl"></i>
-            </button>
-            <div class="w-12 h-12 bg-brand-100 text-brand-700 rounded-2xl flex items-center justify-center text-xl mb-4 font-bold">
-                <i class="fa-solid fa-file-pdf"></i>
+    <!-- DOCUMENT INLINE PREVIEW MODAL -->
+    <div id="doc-modal" class="fixed inset-0 z-50 hidden bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] flex flex-col shadow-2xl overflow-hidden border border-slate-200">
+            <!-- Modal Header -->
+            <div class="p-5 bg-slate-900 text-white flex items-center justify-between border-b border-slate-800">
+                <div class="flex items-center gap-3">
+                    <div class="p-2 bg-brand-800 text-emerald-300 rounded-lg">
+                        <i data-lucide="file-text" class="w-5 h-5"></i>
+                    </div>
+                    <div>
+                        <h3 id="modal-title" class="font-bold text-lg text-white">Document Viewer</h3>
+                        <p id="modal-subtitle" class="text-xs text-slate-400">Willow Home Owners Association, Inc.</p>
+                    </div>
+                </div>
+                <button onclick="closeDocModal()" class="text-slate-400 hover:text-white p-2 rounded-lg hover:bg-slate-800 transition-colors">
+                    <i data-lucide="x" class="w-6 h-6"></i>
+                </button>
             </div>
-            <h3 id="docModalTitle" class="text-lg font-bold text-slate-900">Document Information</h3>
-            <p class="text-xs sm:text-sm text-slate-600 mt-2 leading-relaxed">
-                Official governing PDF documents, current financial ledgers, and meeting minutes are archived securely in the <strong>Associa TownSq Repository</strong>.
-            </p>
-            <div class="mt-6 flex flex-col gap-2">
-                <a href="https://app.townsq.io/" target="_blank" rel="noopener noreferrer" class="w-full bg-brand-700 text-white font-bold py-3 rounded-xl text-xs sm:text-sm text-center hover:bg-brand-800 transition">
-                    Access Repository on TownSq &rarr;
-                </a>
-                <button onclick="closeDocModal()" class="w-full bg-slate-100 text-slate-700 font-semibold py-2.5 rounded-xl text-xs sm:text-sm hover:bg-slate-200 transition">
-                    Close Preview
+
+            <!-- Modal Content Body -->
+            <div class="p-6 sm:p-8 overflow-y-auto text-slate-700 space-y-6 text-sm leading-relaxed" id="modal-body">
+                <!-- Content inserted dynamically via JS -->
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="p-4 bg-slate-100 border-t border-slate-200 flex flex-col sm:flex-row justify-between items-center gap-3 text-xs text-slate-500">
+                <span>Official recorded copy of Willow Home Owners Association, Inc.</span>
+                <button onclick="closeDocModal()" class="px-5 py-2.5 bg-slate-900 text-white rounded-xl font-semibold hover:bg-slate-800 transition-colors">
+                    Close Viewer
                 </button>
             </div>
         </div>
     </div>
 
-    <!-- Toast Notification -->
-    <div id="toast" class="fixed bottom-5 right-5 bg-slate-900 text-white px-5 py-3.5 rounded-xl shadow-2xl z-50 hidden flex items-center gap-3 border border-slate-700 text-xs sm:text-sm">
-        <i class="fa-solid fa-circle-check text-emerald-400 text-base"></i>
-        <span id="toastMsg">Action completed successfully.</span>
-    </div>
-
+    <!-- JavaScript Logic -->
     <script>
-        // Dynamic Current Year
-        document.getElementById('year').textContent = new Date().getFullYear();
+        // Initialize Lucide Icons
+        lucide.createIcons();
 
-        // Mobile Menu Toggle Logic
-        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-        const mobileMenu = document.getElementById('mobileMenu');
-        const menuIcon = document.getElementById('menuIcon');
+        // Mobile Menu Toggle
+        const mobileBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
 
-        mobileMenuBtn.addEventListener('click', () => {
+        mobileBtn.addEventListener('click', () => {
             mobileMenu.classList.toggle('hidden');
-            if(mobileMenu.classList.contains('hidden')) {
-                menuIcon.classList.remove('fa-xmark');
-                menuIcon.classList.add('fa-bars');
-            } else {
-                menuIcon.classList.remove('fa-bars');
-                menuIcon.classList.add('fa-xmark');
-            }
         });
 
-        // Document Filter Functionality
-        function filterDocs(category) {
-            const cards = document.querySelectorAll('.doc-card');
-            const filterBtns = document.querySelectorAll('.doc-filter-btn');
-
-            filterBtns.forEach(btn => {
-                if(btn.getAttribute('data-filter') === category) {
-                    btn.classList.remove('bg-slate-100', 'text-slate-600');
-                    btn.classList.add('bg-brand-700', 'text-white');
-                } else {
-                    btn.classList.remove('bg-brand-700', 'text-white');
-                    btn.classList.add('bg-slate-100', 'text-slate-600');
-                }
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
             });
+        });
 
-            cards.forEach(card => {
-                if(category === 'all' || card.getAttribute('data-category') === category) {
+        // Governing Documents Filter & Search Logic
+        const docSearch = document.getElementById('doc-search');
+        const docFilterBtns = document.querySelectorAll('.doc-filter-btn');
+        const docCards = document.querySelectorAll('.doc-card');
+        let currentDocCategory = 'all';
+
+        docFilterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                docFilterBtns.forEach(b => {
+                    b.classList.remove('bg-brand-800', 'text-white');
+                    b.classList.add('bg-slate-100', 'text-slate-700');
+                });
+                btn.classList.remove('bg-slate-100', 'text-slate-700');
+                btn.classList.add('bg-brand-800', 'text-white');
+
+                currentDocCategory = btn.getAttribute('data-category');
+                filterDocs();
+            });
+        });
+
+        docSearch.addEventListener('input', filterDocs);
+
+        function filterDocs() {
+            const query = docSearch.value.toLowerCase().trim();
+
+            docCards.forEach(card => {
+                const category = card.getAttribute('data-category');
+                const keywords = card.getAttribute('data-keywords').toLowerCase();
+                const cardText = card.innerText.toLowerCase();
+
+                const matchesCategory = (currentDocCategory === 'all' || category.includes(currentDocCategory));
+                const matchesSearch = query === '' || keywords.includes(query) || cardText.includes(query);
+
+                if (matchesCategory && matchesSearch) {
                     card.classList.remove('hidden');
                 } else {
                     card.classList.add('hidden');
@@ -895,47 +713,141 @@
             });
         }
 
-        // Rules Search Functionality
-        function searchRules() {
-            const query = document.getElementById('ruleSearchInput').value.toLowerCase();
-            const ruleCards = document.querySelectorAll('.rule-card');
+        // Rules Filter Logic
+        const ruleBtns = document.querySelectorAll('.rule-tab-btn');
+        const ruleCards = document.querySelectorAll('.rule-card');
 
-            ruleCards.forEach(card => {
-                const text = card.textContent.toLowerCase();
-                if(text.includes(query)) {
-                    card.classList.remove('hidden');
-                } else {
-                    card.classList.add('hidden');
-                }
+        ruleBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                ruleBtns.forEach(b => {
+                    b.classList.remove('bg-brand-800', 'text-white');
+                    b.classList.add('bg-slate-100', 'text-slate-700');
+                });
+                btn.classList.remove('bg-slate-100', 'text-slate-700');
+                btn.classList.add('bg-brand-800', 'text-white');
+
+                const selectedRule = btn.getAttribute('data-rule-cat');
+
+                ruleCards.forEach(card => {
+                    const cardRule = card.getAttribute('data-rule');
+                    if (selectedRule === 'all' || cardRule === selectedRule) {
+                        card.classList.remove('hidden');
+                    } else {
+                        card.classList.add('hidden');
+                    }
+                });
             });
-        }
+        });
 
-        // Document Modal Functions
-        function openDocModal(title) {
-            document.getElementById('docModalTitle').textContent = title;
-            document.getElementById('docModal').classList.remove('hidden');
+        // Document Text Content Database for Inline Preview Modal
+        const documentDatabase = {
+            bylaws: {
+                title: "Code of Regulations & Corporate Bylaws",
+                subtitle: "Willow Home Owners Association, Inc.",
+                content: `
+                    <div class="border-b pb-4 mb-4">
+                        <h4 class="text-base font-bold text-slate-900">ARTICLE I - NAME AND LOCATION</h4>
+                        <p class="mt-1">The name of the corporation is Willow Home Owners Association, Inc., hereinafter referred to as the "Association". The principal office of the corporation shall be located in the Willow Bend Community.</p>
+                    </div>
+
+                    <div class="border-b pb-4 mb-4">
+                        <h4 class="text-base font-bold text-slate-900">ARTICLE II - DEFINITIONS</h4>
+                        <p class="mt-1">"Association" shall mean and refer to Willow Home Owners Association, Inc., its successors and assigns.</p>
+                        <p class="mt-1">"Properties" shall mean and refer to that certain real property described in the Declaration of Covenants, Conditions and Restrictions for Willow Bend Community.</p>
+                    </div>
+
+                    <div class="border-b pb-4 mb-4">
+                        <h4 class="text-base font-bold text-slate-900">ARTICLE III - MEETING OF MEMBERS</h4>
+                        <p class="mt-1"><strong>Section 1. Annual Meetings:</strong> The annual meeting of the members shall be held at least once per calendar year at a time and location designated by the Board of Directors, with notice provided to all lot owners of record.</p>
+                        <p class="mt-1"><strong>Section 2. Quorum:</strong> The presence at the meeting of members entitled to cast, or of proxies entitled to cast, 10% of the votes shall constitute a quorum for any action except as otherwise provided in the Articles of Incorporation.</p>
+                    </div>
+
+                    <div class="border-b pb-4 mb-4">
+                        <h4 class="text-base font-bold text-slate-900">ARTICLE IV - BOARD OF DIRECTORS</h4>
+                        <p class="mt-1">The affairs of this Association shall be managed by a Board of volunteer Directors who are members of the Association in good standing. Directors shall serve staggered terms as specified in election guidelines.</p>
+                    </div>
+
+                    <div>
+                        <h4 class="text-base font-bold text-slate-900">ARTICLE V - AMENDMENTS</h4>
+                        <p class="mt-1">These Bylaws may be amended at a regular or special meeting of the members by a vote of a majority of a quorum of members present in person or by proxy.</p>
+                    </div>
+                `
+            },
+            covenants: {
+                title: "Declaration of Covenants, Conditions & Restrictions",
+                subtitle: "Willow Bend Community",
+                content: `
+                    <div class="border-b pb-4 mb-4">
+                        <h4 class="text-base font-bold text-slate-900">ARTICLE I - PROPERTY RESTRICTIONS</h4>
+                        <p class="mt-1">All lots in Willow Bend shall be used exclusively for single-family residential purposes. No commercial business or noxious activity shall be conducted upon any lot.</p>
+                    </div>
+
+                    <div class="border-b pb-4 mb-4">
+                        <h4 class="text-base font-bold text-slate-900">ARTICLE II - ARCHITECTURAL CONTROL</h4>
+                        <p class="mt-1">No building, fence, wall, shed, or other structure shall be commenced, erected, or maintained upon the Properties, nor shall any exterior addition to or change or alteration therein be made until the plans and specifications have been submitted to and approved in writing by the Architectural Review Committee (ARC).</p>
+                    </div>
+
+                    <div class="border-b pb-4 mb-4">
+                        <h4 class="text-base font-bold text-slate-900">ARTICLE III - COMMON AREAS & EASEMENTS</h4>
+                        <p class="mt-1">Every owner shall have a right and easement of enjoyment in and to the Common Elements (including retention ponds and entrance landscaping) which shall be appurtenant to and shall pass with the title to every lot.</p>
+                    </div>
+
+                    <div>
+                        <h4 class="text-base font-bold text-slate-900">ARTICLE IV - COVENANT FOR MAINTENANCE ASSESSMENTS</h4>
+                        <p class="mt-1">Each owner of any lot by acceptance of a deed therefor is deemed to covenant and agree to pay to the Association annual and special assessments to maintain common properties, ponds, and insurance policies.</p>
+                    </div>
+                `
+            },
+            articles: {
+                title: "Articles of Incorporation",
+                subtitle: "Willow Home Owners Association, Inc.",
+                content: `
+                    <div class="border-b pb-4 mb-4">
+                        <h4 class="text-base font-bold text-slate-900">FIRST: NAME</h4>
+                        <p class="mt-1">The name of said corporation shall be <strong>Willow Home Owners Association, Inc.</strong></p>
+                    </div>
+
+                    <div class="border-b pb-4 mb-4">
+                        <h4 class="text-base font-bold text-slate-900">SECOND: PURPOSE</h4>
+                        <p class="mt-1">The purpose for which this corporation is formed is to operate as a non-profit civic organization for the maintenance, preservation, and architectural control of the residential lot properties and common areas within the Willow Bend Community.</p>
+                    </div>
+
+                    <div>
+                        <h4 class="text-base font-bold text-slate-900">THIRD: MEMBERSHIP</h4>
+                        <p class="mt-1">Every person or entity who is a record owner of a fee or undivided fee interest in any lot shall be a member of the Corporation.</p>
+                    </div>
+                `
+            }
+        };
+
+        // Modal Controls
+        function openDocModal(docKey) {
+            const doc = documentDatabase[docKey];
+            if (!doc) return;
+
+            document.getElementById('modal-title').innerText = doc.title;
+            document.getElementById('modal-subtitle').innerText = doc.subtitle;
+            document.getElementById('modal-body').innerHTML = doc.content;
+
+            document.getElementById('doc-modal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
         }
 
         function closeDocModal() {
-            document.getElementById('docModal').classList.add('hidden');
+            document.getElementById('doc-modal').classList.add('hidden');
+            document.body.style.overflow = 'auto';
         }
 
-        // Contact Form Submission Handler
-        function handleContactSubmit(e) {
-            e.preventDefault();
-            e.target.reset();
-            showToast("Your message has been sent to the Board of Trustees!");
-        }
-
-        // Toast Helper
-        function showToast(message) {
-            const toast = document.getElementById('toast');
-            const toastMsg = document.getElementById('toastMsg');
-            toastMsg.textContent = message;
-            toast.classList.remove('hidden');
+        // Contact Form Mock Submission
+        function handleContactSubmit(event) {
+            event.preventDefault();
+            const successMsg = document.getElementById('contact-success');
+            const form = document.getElementById('contact-form');
+            successMsg.classList.remove('hidden');
+            form.reset();
             setTimeout(() => {
-                toast.classList.add('hidden');
-            }, 4000);
+                successMsg.classList.add('hidden');
+            }, 5000);
         }
     </script>
 </body>
