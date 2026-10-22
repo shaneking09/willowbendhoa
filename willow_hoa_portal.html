@@ -1,0 +1,1030 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Willow Home Owners Association | Willow Bend Subdivision</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts - Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            600: '#16a34a',
+                            700: '#15803d',
+                            800: '#166534',
+                            900: '#14532d',
+                            dark: '#0f291e',
+                        },
+                        navy: {
+                            800: '#1e293b',
+                            900: '#0f172a',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .glass-header {
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(8px);
+        }
+        .modal-active {
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased flex flex-col min-h-screen">
+
+    <!-- HEADER / NAVIGATION BAR -->
+    <header class="sticky top-0 z-40 glass-header border-b border-slate-200 transition-all duration-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Branding -->
+                <div class="flex items-center space-x-3">
+                    <div class="w-11 h-11 bg-brand-800 text-white rounded-xl flex items-center justify-center shadow-md">
+                        <i class="fa-solid font-bold text-xl fa-tree"></i>
+                    </div>
+                    <div>
+                        <span class="block text-lg font-bold text-brand-900 leading-tight">Willow HOA</span>
+                        <span class="text-xs font-medium text-slate-500 tracking-wide uppercase">Willow Bend Subdivision</span>
+                    </div>
+                </div>
+
+                <!-- Desktop Navigation Links -->
+                <nav class="hidden md:flex space-x-1 lg:space-x-2 font-medium text-sm text-slate-700">
+                    <button onclick="navigateTo('home')" class="nav-btn px-3 py-2 rounded-lg hover:bg-slate-100 hover:text-brand-800 transition text-brand-800 font-semibold" data-target="home">Home</button>
+                    <button onclick="navigateTo('governance')" class="nav-btn px-3 py-2 rounded-lg hover:bg-slate-100 hover:text-brand-800 transition" data-target="governance">Governance & Docs</button>
+                    <button onclick="navigateTo('guidelines')" class="nav-btn px-3 py-2 rounded-lg hover:bg-slate-100 hover:text-brand-800 transition" data-target="guidelines">Community Rules</button>
+                    <button onclick="navigateTo('news')" class="nav-btn px-3 py-2 rounded-lg hover:bg-slate-100 hover:text-brand-800 transition" data-target="news">News & FAQs</button>
+                    <button onclick="navigateTo('contact')" class="nav-btn px-3 py-2 rounded-lg hover:bg-slate-100 hover:text-brand-800 transition" data-target="contact">Board & Contact</button>
+                </nav>
+
+                <!-- Action Button -->
+                <div class="hidden lg:flex items-center space-x-3">
+                    <button onclick="navigateTo('contact', 'Architectural Review Request')" class="bg-brand-800 hover:bg-brand-900 text-white text-xs font-semibold px-4 py-2.5 rounded-lg shadow transition duration-150 flex items-center gap-2">
+                        <i class="fa-solid fa-file-pen"></i> Submit ARC Form
+                    </button>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="text-slate-600 hover:text-slate-900 p-2 rounded-lg focus:outline-none">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Menu -->
+        <div id="mobile-menu" class="hidden md:hidden border-b border-slate-200 bg-white px-4 pt-2 pb-6 space-y-2 shadow-lg">
+            <button onclick="navigateTo('home')" class="w-full text-left px-3 py-2.5 rounded-md font-medium text-slate-700 hover:bg-brand-50 hover:text-brand-800">Home</button>
+            <button onclick="navigateTo('governance')" class="w-full text-left px-3 py-2.5 rounded-md font-medium text-slate-700 hover:bg-brand-50 hover:text-brand-800">Governance & Documents</button>
+            <button onclick="navigateTo('guidelines')" class="w-full text-left px-3 py-2.5 rounded-md font-medium text-slate-700 hover:bg-brand-50 hover:text-brand-800">Community Rules</button>
+            <button onclick="navigateTo('news')" class="w-full text-left px-3 py-2.5 rounded-md font-medium text-slate-700 hover:bg-brand-50 hover:text-brand-800">News & FAQs</button>
+            <button onclick="navigateTo('contact')" class="w-full text-left px-3 py-2.5 rounded-md font-medium text-slate-700 hover:bg-brand-50 hover:text-brand-800">Board Members & Contact</button>
+            <div class="pt-2">
+                <button onclick="navigateTo('contact', 'Architectural Review Request')" class="w-full bg-brand-800 text-white text-center font-semibold py-2.5 rounded-lg">
+                    Submit ARC Request
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT CONTAINER -->
+    <main class="flex-grow">
+
+        <!-- ==================== PAGE 1: HOME ==================== -->
+        <section id="page-home" class="page-section">
+            <!-- Hero Section -->
+            <div class="relative bg-brand-dark text-white overflow-hidden py-16 sm:py-24">
+                <div class="absolute inset-0 opacity-20 bg-[radial-gradient(#22c55e_1px,transparent_1px)] [background-size:16px_16px]"></div>
+                <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="max-w-3xl">
+                        <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-brand-800/80 text-brand-100 border border-brand-600 mb-6">
+                            <i class="fa-solid fa-house-chimney text-xs mr-2"></i> Official Resident Portal
+                        </span>
+                        <h1 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight">
+                            Welcome to the Willow Bend Community
+                        </h1>
+                        <p class="mt-4 text-base sm:text-lg text-slate-300 leading-relaxed">
+                            Serving the residents of Willow Bend Subdivision (Phase 1). Dedicated to maintaining community standards, managing common elements, and serving our homeowners in Newark, Ohio.
+                        </p>
+                        <div class="mt-8 flex flex-wrap gap-4">
+                            <button onclick="navigateTo('governance')" class="bg-brand-600 hover:bg-brand-700 text-white font-semibold px-6 py-3 rounded-lg shadow-lg transition flex items-center gap-2">
+                                <i class="fa-solid fa-book"></i> Governing Documents
+                            </button>
+                            <button onclick="navigateTo('contact')" class="bg-slate-800 hover:bg-slate-700 text-slate-100 font-semibold px-6 py-3 rounded-lg border border-slate-700 transition flex items-center gap-2">
+                                <i class="fa-solid fa-envelope"></i> Contact Trustees
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Links & Key Information Grid -->
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+                <div class="sm:flex sm:items-center sm:justify-between mb-8">
+                    <div>
+                        <h2 class="text-2xl font-bold text-slate-900">Resident Quick Resources</h2>
+                        <p class="text-sm text-slate-500 mt-1">Direct access to essential homeowner tools and information.</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- ARC Form Card -->
+                    <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm hover:shadow-md transition group">
+                        <div class="w-12 h-12 bg-emerald-100 text-emerald-700 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition">
+                            <i class="fa-solid fa-compass-drafting text-xl"></i>
+                        </div>
+                        <h3 class="font-bold text-slate-900 text-lg mb-2">Architectural Review</h3>
+                        <p class="text-sm text-slate-600 mb-4">Planning exterior modifications, fences, decks, or sheds? Submit plans 30 days prior to work.</p>
+                        <button onclick="navigateTo('contact', 'Architectural Review Request')" class="text-brand-700 font-semibold text-sm hover:text-brand-900 inline-flex items-center gap-1">
+                            Start ARC Request <i class="fa-solid fa-arrow-right text-xs"></i>
+                        </button>
+                    </div>
+
+                    <!-- Annual Dues Card -->
+                    <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm hover:shadow-md transition group">
+                        <div class="w-12 h-12 bg-blue-100 text-blue-700 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition">
+                            <i class="fa-solid fa-receipt text-xl"></i>
+                        </div>
+                        <h3 class="font-bold text-slate-900 text-lg mb-2">Dues & Assessments</h3>
+                        <p class="text-sm text-slate-600 mb-4">Annual dues fund entrance maintenance, reserve areas, and common land landscaping.</p>
+                        <button onclick="openModal('dues-modal')" class="text-blue-700 font-semibold text-sm hover:text-blue-900 inline-flex items-center gap-1">
+                            View Payment Info <i class="fa-solid fa-arrow-right text-xs"></i>
+                        </button>
+                    </div>
+
+                    <!-- Trash & Recycling Card -->
+                    <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm hover:shadow-md transition group">
+                        <div class="w-12 h-12 bg-amber-100 text-amber-800 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition">
+                            <i class="fa-solid fa-trash-can text-xl"></i>
+                        </div>
+                        <h3 class="font-bold text-slate-900 text-lg mb-2">Trash Guidelines</h3>
+                        <p class="text-sm text-slate-600 mb-4">Keep containers stored in sanitary condition and review community waste management notes.</p>
+                        <button onclick="openRuleModal('trash')" class="text-amber-800 font-semibold text-sm hover:text-amber-900 inline-flex items-center gap-1">
+                            View Trash Policies <i class="fa-solid fa-arrow-right text-xs"></i>
+                        </button>
+                    </div>
+
+                    <!-- Common Areas & Ponds -->
+                    <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm hover:shadow-md transition group">
+                        <div class="w-12 h-12 bg-indigo-100 text-indigo-700 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition">
+                            <i class="fa-solid fa-water text-xl"></i>
+                        </div>
+                        <h3 class="font-bold text-slate-900 text-lg mb-2">Retention Reserves</h3>
+                        <p class="text-sm text-slate-600 mb-4">Rules regarding Reserve Areas A & B, pond maintenance, safety, and land protection.</p>
+                        <button onclick="openRuleModal('pond')" class="text-indigo-700 font-semibold text-sm hover:text-indigo-900 inline-flex items-center gap-1">
+                            Read Common Rules <i class="fa-solid fa-arrow-right text-xs"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Quick Summary / Mission Banner -->
+                <div class="mt-12 bg-slate-900 rounded-2xl text-white p-8 sm:p-10 relative overflow-hidden shadow-lg">
+                    <div class="relative z-10 max-w-3xl">
+                        <h3 class="text-xl sm:text-2xl font-bold text-white mb-3">About Willow Home Owners Association, Inc.</h3>
+                        <p class="text-slate-300 text-sm sm:text-base leading-relaxed mb-6">
+                            Incorporated under Ohio non-profit law, our association oversees Phase 1 of Willow Bend Subdivision. The Board of Trustees operates to preserve property values, maintain entryway landscaping and reserve grounds, and ensure adherence to our Deed of Restrictions.
+                        </p>
+                        <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 border-t border-slate-800 pt-6 text-sm">
+                            <div>
+                                <span class="block text-slate-400 text-xs uppercase">Location</span>
+                                <span class="font-semibold text-slate-200">Newark, OH</span>
+                            </div>
+                            <div>
+                                <span class="block text-slate-400 text-xs uppercase">Legal Status</span>
+                                <span class="font-semibold text-slate-200">Ohio Non-Profit Corp</span>
+                            </div>
+                            <div>
+                                <span class="block text-slate-400 text-xs uppercase">Annual Meeting</span>
+                                <span class="font-semibold text-slate-200">Held Annually</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== PAGE 2: GOVERNANCE & DOCUMENTS ==================== -->
+        <section id="page-governance" class="page-section hidden">
+            <div class="bg-slate-100 border-b border-slate-200 py-10">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <h1 class="text-3xl font-extrabold text-slate-900">Governance & Legal Documents</h1>
+                    <p class="mt-2 text-slate-600">Access official covenants, deeds, codes, and meeting records for Willow Bend Subdivision.</p>
+                </div>
+            </div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+                <!-- Search and Filter Bar -->
+                <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm mb-8 flex flex-col md:flex-row gap-4 justify-between items-center">
+                    <div class="relative w-full md:w-96">
+                        <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3.5 text-slate-400"></i>
+                        <input type="text" id="doc-search" onkeyup="filterDocs()" placeholder="Search documents (e.g. Restrictions, Minutes, Fences)..." class="w-full pl-10 pr-4 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-600">
+                    </div>
+                    <div class="flex gap-2 w-full md:w-auto overflow-x-auto pb-2 md:pb-0">
+                        <button onclick="filterCategory('all')" class="doc-cat-btn bg-brand-800 text-white text-xs font-semibold px-4 py-2 rounded-lg whitespace-nowrap">All Files</button>
+                        <button onclick="filterCategory('covenants')" class="doc-cat-btn bg-slate-100 text-slate-700 text-xs font-semibold px-4 py-2 rounded-lg hover:bg-slate-200 whitespace-nowrap">Covenants & Deeds</button>
+                        <button onclick="filterCategory('forms')" class="doc-cat-btn bg-slate-100 text-slate-700 text-xs font-semibold px-4 py-2 rounded-lg hover:bg-slate-200 whitespace-nowrap">Forms & Policies</button>
+                        <button onclick="filterCategory('minutes')" class="doc-cat-btn bg-slate-100 text-slate-700 text-xs font-semibold px-4 py-2 rounded-lg hover:bg-slate-200 whitespace-nowrap">Meeting Minutes</button>
+                    </div>
+                </div>
+
+                <!-- Document Grid -->
+                <div id="docs-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    
+                    <!-- Doc Item 1 -->
+                    <div class="doc-card bg-white p-6 rounded-xl border border-slate-200 shadow-sm flex flex-col justify-between" data-category="covenants" data-title="Deed of Restrictions Phase 1">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="px-2.5 py-1 bg-emerald-100 text-emerald-800 font-medium text-xs rounded-full">Official Deed</span>
+                                <i class="fa-regular fa-file-pdf text-red-500 text-xl"></i>
+                            </div>
+                            <h3 class="font-bold text-slate-900 text-base mb-2">Deed of Restrictions (Phase 1)</h3>
+                            <p class="text-xs text-slate-600 mb-4">Recorded covenants covering dwelling sizes, setbacks, exterior materials, fences, and lot usage rules.</p>
+                        </div>
+                        <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
+                            <span class="text-xs text-slate-400">PDF • Recorded Doc</span>
+                            <button onclick="viewDocSummary('Deed of Restrictions (Phase 1)', 'Covers single-family requirements (min 1,100 sq ft 1-story, 1,500 sq ft multi-story), 12-month building completion, fence limits, vehicle parking, and Design Control Committee rules.')" class="text-xs font-semibold text-brand-800 hover:text-brand-900">
+                                View Summary <i class="fa-solid fa-eye ml-1"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Doc Item 2 -->
+                    <div class="doc-card bg-white p-6 rounded-xl border border-slate-200 shadow-sm flex flex-col justify-between" data-category="forms" data-title="Architectural Review Application Form">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="px-2.5 py-1 bg-blue-100 text-blue-800 font-medium text-xs rounded-full">Form / Application</span>
+                                <i class="fa-regular fa-file-lines text-blue-500 text-xl"></i>
+                            </div>
+                            <h3 class="font-bold text-slate-900 text-base mb-2">Design Control / ARC Form</h3>
+                            <p class="text-xs text-slate-600 mb-4">Mandatory application form required for all exterior changes, additions, fences, and landscaping prior to construction.</p>
+                        </div>
+                        <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
+                            <span class="text-xs text-slate-400">PDF Form</span>
+                            <button onclick="navigateTo('contact', 'Architectural Review Request')" class="text-xs font-semibold text-brand-800 hover:text-brand-900">
+                                Apply Online <i class="fa-solid fa-arrow-right ml-1"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Doc Item 3 -->
+                    <div class="doc-card bg-white p-6 rounded-xl border border-slate-200 shadow-sm flex flex-col justify-between" data-category="covenants" data-title="Code of Regulations / Bylaws">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="px-2.5 py-1 bg-emerald-100 text-emerald-800 font-medium text-xs rounded-full">Governance</span>
+                                <i class="fa-regular fa-file-pdf text-red-500 text-xl"></i>
+                            </div>
+                            <h3 class="font-bold text-slate-900 text-base mb-2">Code of Regulations (Bylaws)</h3>
+                            <p class="text-xs text-slate-600 mb-4">Outlines Board structure, election procedures, voting rights, annual meetings, and HOA administrative procedures.</p>
+                        </div>
+                        <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
+                            <span class="text-xs text-slate-400">PDF Document</span>
+                            <button onclick="viewDocSummary('Code of Regulations', 'Defines the powers of the Board of Trustees, meeting notice periods, voting quorums, officer roles (President, Secretary, Treasurer), and assessment enforcement rights.')" class="text-xs font-semibold text-brand-800 hover:text-brand-900">
+                                View Summary <i class="fa-solid fa-eye ml-1"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Doc Item 4 -->
+                    <div class="doc-card bg-white p-6 rounded-xl border border-slate-200 shadow-sm flex flex-col justify-between" data-category="forms" data-title="Assessment and Lien Collection Policy">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="px-2.5 py-1 bg-amber-100 text-amber-800 font-medium text-xs rounded-full">Financial Policy</span>
+                                <i class="fa-regular fa-file-pdf text-amber-600 text-xl"></i>
+                            </div>
+                            <h3 class="font-bold text-slate-900 text-base mb-2">Assessment Collection Policy</h3>
+                            <p class="text-xs text-slate-600 mb-4">Details annual assessment schedules, 30-day grace periods, 12% annual interest rules, and lien provisions.</p>
+                        </div>
+                        <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
+                            <span class="text-xs text-slate-400">Policy Brief</span>
+                            <button onclick="openModal('dues-modal')" class="text-xs font-semibold text-brand-800 hover:text-brand-900">
+                                View Dues Schedule <i class="fa-solid fa-eye ml-1"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Doc Item 5 -->
+                    <div class="doc-card bg-white p-6 rounded-xl border border-slate-200 shadow-sm flex flex-col justify-between" data-category="minutes" data-title="2024 Annual HOA Meeting Minutes">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="px-2.5 py-1 bg-purple-100 text-purple-800 font-medium text-xs rounded-full">Meeting Record</span>
+                                <i class="fa-regular fa-file-lines text-purple-600 text-xl"></i>
+                            </div>
+                            <h3 class="font-bold text-slate-900 text-base mb-2">Annual Meeting Minutes (2024)</h3>
+                            <p class="text-xs text-slate-600 mb-4">Summary of elections, financial updates, common area maintenance reports, and new business.</p>
+                        </div>
+                        <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
+                            <span class="text-xs text-slate-400">PDF • Official Minutes</span>
+                            <button onclick="viewDocSummary('2024 Annual Meeting Minutes', 'Covers approval of the annual operating budget, election of Board Trustees, status of entryway fountain projects, and open floor discussion on neighborhood guidelines.')" class="text-xs font-semibold text-brand-800 hover:text-brand-900">
+                                Read Summary <i class="fa-solid fa-eye ml-1"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Doc Item 6 -->
+                    <div class="doc-card bg-white p-6 rounded-xl border border-slate-200 shadow-sm flex flex-col justify-between" data-category="covenants" data-title="Subdivision Plat Map Reserve Areas">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="px-2.5 py-1 bg-emerald-100 text-emerald-800 font-medium text-xs rounded-full">Plat Map</span>
+                                <i class="fa-regular fa-map text-emerald-600 text-xl"></i>
+                            </div>
+                            <h3 class="font-bold text-slate-900 text-base mb-2">Subdivision Plat Map & Reserves</h3>
+                            <p class="text-xs text-slate-600 mb-4">Map displaying lot boundaries, Reserve Area A, Reserve Area B, right-of-ways, and easements.</p>
+                        </div>
+                        <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
+                            <span class="text-xs text-slate-400">Map Graphic</span>
+                            <button onclick="viewDocSummary('Subdivision Plat Map', 'Illustrates platted lots for Willow Bend Phase 1, detailing dedicated reserve areas, public rights-of-way, utility easements, and stormwater retention structures.')" class="text-xs font-semibold text-brand-800 hover:text-brand-900">
+                                View Overview <i class="fa-solid fa-eye ml-1"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== PAGE 3: COMMUNITY GUIDELINES ==================== -->
+        <section id="page-guidelines" class="page-section hidden">
+            <div class="bg-slate-100 border-b border-slate-200 py-10">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <h1 class="text-3xl font-extrabold text-slate-900">Community Guidelines & Standards</h1>
+                    <p class="mt-2 text-slate-600">A clear guide to neighborhood covenants, design controls, and lot upkeep standards.</p>
+                </div>
+            </div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    
+                    <!-- Rule Category Cards -->
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="w-10 h-10 bg-brand-100 text-brand-800 rounded-lg flex items-center justify-center mb-4">
+                                <i class="fa-solid fa-border-all text-lg"></i>
+                            </div>
+                            <h3 class="text-lg font-bold text-slate-900 mb-2">Fences & Enclosures</h3>
+                            <p class="text-sm text-slate-600 mb-4">Fences must comply with Newark regulations or HOA rules. Privacy fences max 6ft around decks/patios; split-rail max 48 inches in rear yards.</p>
+                        </div>
+                        <button onclick="openRuleModal('fence')" class="w-full bg-slate-100 hover:bg-slate-200 text-slate-800 font-semibold text-xs py-2.5 rounded-lg transition">
+                            View Detailed Fence Rules
+                        </button>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="w-10 h-10 bg-brand-100 text-brand-800 rounded-lg flex items-center justify-center mb-4">
+                                <i class="fa-solid fa-car text-lg"></i>
+                            </div>
+                            <h3 class="text-lg font-bold text-slate-900 mb-2">Parking & Vehicles</h3>
+                            <p class="text-sm text-slate-600 mb-4">Trucks, trailers, boats, RVs, and commercial vehicles must be stored inside garages. Temporary 48-hour parking permitted max once per 30 days.</p>
+                        </div>
+                        <button onclick="openRuleModal('parking')" class="w-full bg-slate-100 hover:bg-slate-200 text-slate-800 font-semibold text-xs py-2.5 rounded-lg transition">
+                            View Vehicle Restrictions
+                        </button>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="w-10 h-10 bg-brand-100 text-brand-800 rounded-lg flex items-center justify-center mb-4">
+                                <i class="fa-solid fa-house-circle-check text-lg"></i>
+                            </div>
+                            <h3 class="text-lg font-bold text-slate-900 mb-2">Home & Outbuildings</h3>
+                            <p class="text-sm text-slate-600 mb-4">Exterior maintenance must be prompt. Garden sheds max 100 sq ft and must match the principal house. No above-ground pools allowed.</p>
+                        </div>
+                        <button onclick="openRuleModal('structures')" class="w-full bg-slate-100 hover:bg-slate-200 text-slate-800 font-semibold text-xs py-2.5 rounded-lg transition">
+                            View Building Rules
+                        </button>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="w-10 h-10 bg-brand-100 text-brand-800 rounded-lg flex items-center justify-center mb-4">
+                                <i class="fa-solid fa-trash text-lg"></i>
+                            </div>
+                            <h3 class="text-lg font-bold text-slate-900 mb-2">Trash & Sanitation</h3>
+                            <p class="text-sm text-slate-600 mb-4">Lots must remain free of rubbish or dumping. Waste containers must be maintained in clean, sanitary conditions.</p>
+                        </div>
+                        <button onclick="openRuleModal('trash')" class="w-full bg-slate-100 hover:bg-slate-200 text-slate-800 font-semibold text-xs py-2.5 rounded-lg transition">
+                            View Waste Guidelines
+                        </button>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="w-10 h-10 bg-brand-100 text-brand-800 rounded-lg flex items-center justify-center mb-4">
+                                <i class="fa-solid fa-dog text-lg"></i>
+                            </div>
+                            <h3 class="text-lg font-bold text-slate-900 mb-2">Pets & Animals</h3>
+                            <p class="text-sm text-slate-600 mb-4">Domestic pets allowed in reasonable numbers. Commercial breeding, dog runs, and outside kennels are strictly prohibited.</p>
+                        </div>
+                        <button onclick="openRuleModal('pets')" class="w-full bg-slate-100 hover:bg-slate-200 text-slate-800 font-semibold text-xs py-2.5 rounded-lg transition">
+                            View Pet Regulations
+                        </button>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="w-10 h-10 bg-brand-100 text-brand-800 rounded-lg flex items-center justify-center mb-4">
+                                <i class="fa-solid fa-satellite-dish text-lg"></i>
+                            </div>
+                            <h3 class="text-lg font-bold text-slate-900 mb-2">Utilities & Satellite</h3>
+                            <p class="text-sm text-slate-600 mb-4">Satellite dishes under 24" permitted at rear only (not visible from street). External window air units and clotheslines banned.</p>
+                        </div>
+                        <button onclick="openRuleModal('utilities')" class="w-full bg-slate-100 hover:bg-slate-200 text-slate-800 font-semibold text-xs py-2.5 rounded-lg transition">
+                            View Utility Guidelines
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== PAGE 4: NEWS & FAQS ==================== -->
+        <section id="page-news" class="page-section hidden">
+            <div class="bg-slate-100 border-b border-slate-200 py-10">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <h1 class="text-3xl font-extrabold text-slate-900">News & Frequently Asked Questions</h1>
+                    <p class="mt-2 text-slate-600">Stay informed with neighborhood updates and common trustee answers.</p>
+                </div>
+            </div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+                    
+                    <!-- Left Column: Announcements Feed (5 cols) -->
+                    <div class="lg:col-span-5 space-y-6">
+                        <h2 class="text-xl font-bold text-slate-900 flex items-center gap-2">
+                            <i class="fa-solid fa-bullhorn text-brand-700"></i> Board Announcements
+                        </h2>
+
+                        <!-- Announcement Item 1 -->
+                        <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
+                            <div class="flex justify-between items-center text-xs text-slate-400 mb-2">
+                                <span class="font-semibold text-brand-700 bg-brand-50 px-2 py-0.5 rounded">Community Update</span>
+                                <span>Recent</span>
+                            </div>
+                            <h3 class="font-bold text-slate-900 text-sm mb-1">New Resident Portal & Web Domain</h3>
+                            <p class="text-xs text-slate-600 leading-relaxed">
+                                The Trustees have launched this community portal to improve access to HOA documents, forms, contact tools, and meeting notices.
+                            </p>
+                        </div>
+
+                        <!-- Announcement Item 2 -->
+                        <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
+                            <div class="flex justify-between items-center text-xs text-slate-400 mb-2">
+                                <span class="font-semibold text-indigo-700 bg-indigo-50 px-2 py-0.5 rounded">Maintenance</span>
+                                <span>Spring Update</span>
+                            </div>
+                            <h3 class="font-bold text-slate-900 text-sm mb-1">Common Area & Fountain Review</h3>
+                            <p class="text-xs text-slate-600 leading-relaxed">
+                                Trustees are evaluating operational improvements for the entry fountain and retention reserve management to maintain water clarity and curb appeal.
+                            </p>
+                        </div>
+
+                        <!-- Announcement Item 3 -->
+                        <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
+                            <div class="flex justify-between items-center text-xs text-slate-400 mb-2">
+                                <span class="font-semibold text-amber-700 bg-amber-50 px-2 py-0.5 rounded">Annual Dues</span>
+                                <span>Notice</span>
+                            </div>
+                            <h3 class="font-bold text-slate-900 text-sm mb-1">Annual Assessment Notices</h3>
+                            <p class="text-xs text-slate-600 leading-relaxed">
+                                Statements for annual dues are mailed to homeowners. Payments are due within 30 days of issuance to prevent statutory 12% interest additions.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Right Column: Interactive FAQ Accordion (7 cols) -->
+                    <div class="lg:col-span-7 space-y-6">
+                        <h2 class="text-xl font-bold text-slate-900 flex items-center gap-2">
+                            <i class="fa-solid fa-circle-question text-brand-700"></i> Frequently Asked Questions
+                        </h2>
+
+                        <div class="space-y-3" id="faq-accordion">
+                            
+                            <!-- FAQ Item 1 -->
+                            <div class="border border-slate-200 rounded-xl bg-white overflow-hidden shadow-sm">
+                                <button onclick="toggleFaq(1)" class="w-full text-left px-5 py-4 font-semibold text-slate-800 text-sm sm:text-base flex justify-between items-center hover:bg-slate-50 transition">
+                                    <span>When are annual HOA assessments due, and how are they set?</span>
+                                    <i id="faq-icon-1" class="fa-solid fa-chevron-down text-slate-400 text-sm transition-transform duration-200"></i>
+                                </button>
+                                <div id="faq-ans-1" class="hidden px-5 pb-4 text-xs sm:text-sm text-slate-600 border-t border-slate-100 pt-3 leading-relaxed">
+                                    Annual assessments are determined by the Board of Trustees in accordance with the Code of Regulations and Article IV of the Deed of Restrictions. Payments unpaid 30 days after the due date accrue interest at 12% per annum and may constitute a continuing lien upon the property.
+                                </div>
+                            </div>
+
+                            <!-- FAQ Item 2 -->
+                            <div class="border border-slate-200 rounded-xl bg-white overflow-hidden shadow-sm">
+                                <button onclick="toggleFaq(2)" class="w-full text-left px-5 py-4 font-semibold text-slate-800 text-sm sm:text-base flex justify-between items-center hover:bg-slate-50 transition">
+                                    <span>Do I need approval before building a fence, deck, or shed?</span>
+                                    <i id="faq-icon-2" class="fa-solid fa-chevron-down text-slate-400 text-sm transition-transform duration-200"></i>
+                                </button>
+                                <div id="faq-ans-2" class="hidden px-5 pb-4 text-xs sm:text-sm text-slate-600 border-t border-slate-100 pt-3 leading-relaxed">
+                                    Yes. Article I, Section 1 states that complete building, site, fence, and landscaping plans must be submitted to the Design Control Committee (or Grantor/Board) at least 30 business days prior to starting work.
+                                </div>
+                            </div>
+
+                            <!-- FAQ Item 3 -->
+                            <div class="border border-slate-200 rounded-xl bg-white overflow-hidden shadow-sm">
+                                <button onclick="toggleFaq(3)" class="w-full text-left px-5 py-4 font-semibold text-slate-800 text-sm sm:text-base flex justify-between items-center hover:bg-slate-50 transition">
+                                    <span>Are commercial vehicles, trailers, or RVs allowed on driveways?</span>
+                                    <i id="faq-icon-3" class="fa-solid fa-chevron-down text-slate-400 text-sm transition-transform duration-200"></i>
+                                </button>
+                                <div id="faq-ans-3" class="hidden px-5 pb-4 text-xs sm:text-sm text-slate-600 border-t border-slate-100 pt-3 leading-relaxed">
+                                    No. Section 20 stipulates that trucks, trailers, RVs, commercial, or inoperative vehicles cannot be stored or parked outside unless kept inside a fully enclosed garage. Temporary 48-hour parking is allowed no more than once every 30 days.
+                                </div>
+                            </div>
+
+                            <!-- FAQ Item 4 -->
+                            <div class="border border-slate-200 rounded-xl bg-white overflow-hidden shadow-sm">
+                                <button onclick="toggleFaq(4)" class="w-full text-left px-5 py-4 font-semibold text-slate-800 text-sm sm:text-base flex justify-between items-center hover:bg-slate-50 transition">
+                                    <span>Can I install an above-ground pool on my lot?</span>
+                                    <i id="faq-icon-4" class="fa-solid fa-chevron-down text-slate-400 text-sm transition-transform duration-200"></i>
+                                </button>
+                                <div id="faq-ans-4" class="hidden px-5 pb-4 text-xs sm:text-sm text-slate-600 border-t border-slate-100 pt-3 leading-relaxed">
+                                    No. Above-ground swimming pools are explicitly prohibited in Willow Bend Subdivision. In-ground pools are permitted subject to Design Control Committee written approval and ornamental safety fencing. Hot tubs/saunas are permitted.
+                                </div>
+                            </div>
+
+                            <!-- FAQ Item 5 -->
+                            <div class="border border-slate-200 rounded-xl bg-white overflow-hidden shadow-sm">
+                                <button onclick="toggleFaq(5)" class="w-full text-left px-5 py-4 font-semibold text-slate-800 text-sm sm:text-base flex justify-between items-center hover:bg-slate-50 transition">
+                                    <span>Who handles trash collection for the subdivision?</span>
+                                    <i id="faq-icon-5" class="fa-solid fa-chevron-down text-slate-400 text-sm transition-transform duration-200"></i>
+                                </button>
+                                <div id="faq-ans-5" class="hidden px-5 pb-4 text-xs sm:text-sm text-slate-600 border-t border-slate-100 pt-3 leading-relaxed">
+                                    Trash services are arranged individually by homeowners or via city-contracted haulers operating in Newark, OH. Containers must be kept in clean, sanitary conditions and stored properly.
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== PAGE 5: BOARD MEMBERS & CONTACT ==================== -->
+        <section id="page-contact" class="page-section hidden">
+            <div class="bg-slate-100 border-b border-slate-200 py-10">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <h1 class="text-3xl font-extrabold text-slate-900">Board Trustees & Contact</h1>
+                    <p class="mt-2 text-slate-600">Connect with your elected HOA Trustees and submit official inquiries.</p>
+                </div>
+            </div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+                    
+                    <!-- Board Roster (5 cols) -->
+                    <div class="lg:col-span-5 space-y-6">
+                        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+                            <h2 class="text-lg font-bold text-slate-900 mb-4 flex items-center gap-2">
+                                <i class="fa-solid fa-user-shield text-brand-700"></i> Board of Trustees
+                            </h2>
+                            <p class="text-xs text-slate-500 mb-6">Elected volunteer homeowners serving Willow Home Owners Association, Inc.</p>
+
+                            <div class="space-y-4">
+                                <div class="flex items-center space-x-3 p-3 rounded-lg bg-slate-50 border border-slate-100">
+                                    <div class="w-10 h-10 rounded-full bg-brand-800 text-white flex items-center justify-center font-bold text-sm">
+                                        P
+                                    </div>
+                                    <div>
+                                        <div class="text-sm font-bold text-slate-800">Board Trustee / President</div>
+                                        <div class="text-xs text-slate-500">Executive Leadership</div>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-center space-x-3 p-3 rounded-lg bg-slate-50 border border-slate-100">
+                                    <div class="w-10 h-10 rounded-full bg-slate-700 text-white flex items-center justify-center font-bold text-sm">
+                                        T
+                                    </div>
+                                    <div>
+                                        <div class="text-sm font-bold text-slate-800">Board Trustee / Treasurer</div>
+                                        <div class="text-xs text-slate-500">Finances & Assessments</div>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-center space-x-3 p-3 rounded-lg bg-slate-50 border border-slate-100">
+                                    <div class="w-10 h-10 rounded-full bg-slate-700 text-white flex items-center justify-center font-bold text-sm">
+                                        S
+                                    </div>
+                                    <div>
+                                        <div class="text-sm font-bold text-slate-800">Board Trustee / Secretary</div>
+                                        <div class="text-xs text-slate-500">Records & Communications</div>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-center space-x-3 p-3 rounded-lg bg-slate-50 border border-slate-100">
+                                    <div class="w-10 h-10 rounded-full bg-emerald-700 text-white flex items-center justify-center font-bold text-sm">
+                                        E
+                                    </div>
+                                    <div>
+                                        <div class="text-sm font-bold text-slate-800">Board Trustee / Tech Lead</div>
+                                        <div class="text-xs text-slate-500">IT, Web Portal & Infrastructure</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mt-6 pt-4 border-t border-slate-100 text-xs text-slate-500 space-y-2">
+                                <p><strong class="text-slate-700">Official Entity:</strong> Willow Home Owners Association, Inc.</p>
+                                <p><strong class="text-slate-700">Subdivision:</strong> Willow Bend Subdivision Phase 1</p>
+                                <p><strong class="text-slate-700">Location:</strong> Newark, Licking County, OH</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Interactive Contact / ARC Form (7 cols) -->
+                    <div class="lg:col-span-7">
+                        <div class="bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-sm">
+                            <h2 class="text-xl font-bold text-slate-900 mb-2">Send Message to the Board</h2>
+                            <p class="text-xs sm:text-sm text-slate-500 mb-6">Select a request category below to direct your message to the appropriate Trustee.</p>
+
+                            <form id="contact-form" onsubmit="handleFormSubmit(event)" class="space-y-4">
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                    <div>
+                                        <label class="block text-xs font-semibold text-slate-700 uppercase mb-1">Full Name *</label>
+                                        <input type="text" required placeholder="Jane Doe" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-brand-600 focus:outline-none">
+                                    </div>
+                                    <div>
+                                        <label class="block text-xs font-semibold text-slate-700 uppercase mb-1">Email Address *</label>
+                                        <input type="email" required placeholder="jane@example.com" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-brand-600 focus:outline-none">
+                                    </div>
+                                </div>
+
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                    <div>
+                                        <label class="block text-xs font-semibold text-slate-700 uppercase mb-1">Willow Bend Address *</label>
+                                        <input type="text" required placeholder="123 Willow Bend Dr" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-brand-600 focus:outline-none">
+                                    </div>
+                                    <div>
+                                        <label class="block text-xs font-semibold text-slate-700 uppercase mb-1">Category *</label>
+                                        <select id="form-category" required class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-brand-600 focus:outline-none">
+                                            <option value="General Inquiry">General Inquiry</option>
+                                            <option value="Architectural Review Request">Architectural Review Request (ARC)</option>
+                                            <option value="Dues & Assessment Question">Dues & Assessment Question</option>
+                                            <option value="Maintenance Report">Common Area Maintenance Report</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <label class="block text-xs font-semibold text-slate-700 uppercase mb-1">Message / Request Details *</label>
+                                    <textarea id="form-message" rows="5" required placeholder="Provide project details, questions, or comments..." class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-brand-600 focus:outline-none"></textarea>
+                                </div>
+
+                                <button type="submit" class="w-full bg-brand-800 hover:bg-brand-900 text-white font-semibold py-3 rounded-lg transition shadow">
+                                    Submit Inquiry to Board
+                                </button>
+                            </form>
+
+                            <!-- Success Notification State -->
+                            <div id="contact-success" class="hidden mt-4 p-4 bg-emerald-50 border border-emerald-200 text-emerald-800 rounded-xl text-xs sm:text-sm">
+                                <div class="flex items-center gap-2 font-bold mb-1">
+                                    <i class="fa-solid fa-circle-check text-emerald-600 text-base"></i> Message Received!
+                                </div>
+                                Thank you for contacting the Trustees. Your request has been logged and forwarded to the Board.
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-navy-900 text-slate-400 text-xs py-10 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+                <div>
+                    <div class="flex items-center space-x-2 text-white font-bold text-base mb-2">
+                        <i class="fa-solid fa-tree text-brand-600"></i>
+                        <span>Willow Home Owners Association</span>
+                    </div>
+                    <p class="text-slate-400 text-xs leading-relaxed">
+                        Willow Bend Subdivision Phase 1<br>
+                        Newark, Licking County, Ohio 43055
+                    </p>
+                </div>
+                <div>
+                    <h4 class="text-slate-200 font-semibold mb-2">Quick Navigation</h4>
+                    <ul class="space-y-1.5">
+                        <li><button onclick="navigateTo('governance')" class="hover:text-white transition">Governance Documents</button></li>
+                        <li><button onclick="navigateTo('guidelines')" class="hover:text-white transition">Community Rules</button></li>
+                        <li><button onclick="navigateTo('news')" class="hover:text-white transition">News & FAQs</button></li>
+                        <li><button onclick="navigateTo('contact')" class="hover:text-white transition">Contact Trustees</button></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-slate-200 font-semibold mb-2">Notice</h4>
+                    <p class="text-slate-400 text-xs leading-relaxed">
+                        This site is operated by Willow Home Owners Association, Inc. for residential convenience. Official legal inquiries or title transfer requests should be directed to the HOA Board.
+                    </p>
+                </div>
+            </div>
+            <div class="pt-6 border-t border-slate-800 text-center text-slate-500">
+                &copy; <span id="year"></span> Willow Home Owners Association, Inc. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- MODAL POPUPS -->
+    <!-- Rule Detail Modal -->
+    <div id="rule-modal" class="fixed inset-0 z-50 hidden bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-xl w-full p-6 shadow-2xl border border-slate-200 relative max-h-[90vh] overflow-y-auto">
+            <button onclick="closeModal('rule-modal')" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600">
+                <i class="fa-solid fa-xmark text-xl"></i>
+            </button>
+            <div id="rule-modal-content"></div>
+        </div>
+    </div>
+
+    <!-- Doc Summary Modal -->
+    <div id="doc-modal" class="fixed inset-0 z-50 hidden bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-lg w-full p-6 shadow-2xl border border-slate-200 relative">
+            <button onclick="closeModal('doc-modal')" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600">
+                <i class="fa-solid fa-xmark text-xl"></i>
+            </button>
+            <h3 id="doc-modal-title" class="text-lg font-bold text-slate-900 mb-2">Document Summary</h3>
+            <p id="doc-modal-body" class="text-xs sm:text-sm text-slate-600 leading-relaxed mb-6"></p>
+            <div class="flex justify-end">
+                <button onclick="closeModal('doc-modal')" class="bg-slate-800 text-white font-semibold text-xs px-4 py-2 rounded-lg">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dues Info Modal -->
+    <div id="dues-modal" class="fixed inset-0 z-50 hidden bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-lg w-full p-6 shadow-2xl border border-slate-200 relative">
+            <button onclick="closeModal('dues-modal')" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600">
+                <i class="fa-solid fa-xmark text-xl"></i>
+            </button>
+            <h3 class="text-lg font-bold text-slate-900 mb-2">Annual Dues & Assessments</h3>
+            <div class="space-y-3 text-xs sm:text-sm text-slate-600 mb-6">
+                <p>Annual assessments fund entryway maintenance, electricity for community lighting/fountains, landscaping, reserve area upkeep, insurance, and legal administration.</p>
+                <div class="bg-slate-50 p-3 rounded-lg border border-slate-200 space-y-1">
+                    <div><strong>Due Status:</strong> Billed Annually</div>
+                    <div><strong>Grace Period:</strong> 30 Days</div>
+                    <div><strong>Late Fee / Interest:</strong> 12% Per Annum statutory rate after 30 days</div>
+                </div>
+                <p class="text-xs text-slate-500">For dues inquiries or payment mailing address, please use the Contact form or select 'Dues & Assessment Question'.</p>
+            </div>
+            <div class="flex justify-end">
+                <button onclick="closeModal('dues-modal')" class="bg-brand-800 text-white font-semibold text-xs px-4 py-2 rounded-lg">Understood</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT CONTROLLERS -->
+    <script>
+        // Set dynamic copyright year
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Multi-page Navigation Logic
+        function navigateTo(pageId, categorySelect = null) {
+            // Hide all pages
+            const pages = document.querySelectorAll('.page-section');
+            pages.forEach(p => p.classList.add('hidden'));
+
+            // Show selected page
+            const targetPage = document.getElementById('page-' + pageId);
+            if (targetPage) {
+                targetPage.classList.remove('hidden');
+            }
+
+            // Update Header nav button styling
+            const navButtons = document.querySelectorAll('.nav-btn');
+            navButtons.forEach(btn => {
+                if (btn.getAttribute('data-target') === pageId) {
+                    btn.classList.add('text-brand-800', 'font-semibold');
+                } else {
+                    btn.classList.remove('text-brand-800', 'font-semibold');
+                }
+            });
+
+            // Close mobile menu if open
+            document.getElementById('mobile-menu').classList.add('hidden');
+
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            // Optional category pre-fill for contact form
+            if (pageId === 'contact' && categorySelect) {
+                const selectElem = document.getElementById('form-category');
+                if (selectElem) {
+                    selectElem.value = categorySelect;
+                }
+            }
+        }
+
+        // Toggle Mobile Navigation Menu
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        // Document Search Filter
+        function filterDocs() {
+            const query = document.getElementById('doc-search').value.toLowerCase();
+            const cards = document.querySelectorAll('.doc-card');
+
+            cards.forEach(card => {
+                const title = card.getAttribute('data-title').toLowerCase();
+                const text = card.innerText.toLowerCase();
+                if (title.includes(query) || text.includes(query)) {
+                    card.classList.remove('hidden');
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+        }
+
+        // Document Category Filter
+        function filterCategory(cat) {
+            const cards = document.querySelectorAll('.doc-card');
+            const catBtns = document.querySelectorAll('.doc-cat-btn');
+
+            catBtns.forEach(btn => {
+                btn.classList.remove('bg-brand-800', 'text-white');
+                btn.classList.add('bg-slate-100', 'text-slate-700');
+            });
+
+            event.target.classList.remove('bg-slate-100', 'text-slate-700');
+            event.target.classList.add('bg-brand-800', 'text-white');
+
+            cards.forEach(card => {
+                if (cat === 'all' || card.getAttribute('data-category') === cat) {
+                    card.classList.remove('hidden');
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+        }
+
+        // Rule Details Database and Modal Display
+        const ruleData = {
+            fence: {
+                title: "Fence & Enclosure Rules",
+                content: `
+                    <div class="space-y-3 text-xs sm:text-sm text-slate-700">
+                        <p class="font-semibold text-slate-900">Article I, Section 13 Summary:</p>
+                        <ul class="list-disc pl-5 space-y-1">
+                            <li>All fences require advance written approval from the Design Control Committee.</li>
+                            <li>Privacy fences surrounding decks or patios must not exceed six (6) feet in height.</li>
+                            <li>Rear yard fences are limited to split-rail style, max 48 inches (4 feet) in height.</li>
+                            <li>Swimming pool enclosures must be ornamental (solid fences prohibited for pool enclosures).</li>
+                        </ul>
+                    </div>`
+            },
+            parking: {
+                title: "Parking & Vehicle Storage Rules",
+                content: `
+                    <div class="space-y-3 text-xs sm:text-sm text-slate-700">
+                        <p class="font-semibold text-slate-900">Article I, Section 20 Summary:</p>
+                        <ul class="list-disc pl-5 space-y-1">
+                            <li>Trucks, trailers, boats, campers, RVs, commercial, or inoperative vehicles cannot be stored outside.</li>
+                            <li>All such vehicles must be housed in a fully enclosed garage out of view.</li>
+                            <li>Temporary 48-hour guest parking is permitted no more than once every 30 days.</li>
+                        </ul>
+                    </div>`
+            },
+            structures: {
+                title: "Home & Outbuilding Standards",
+                content: `
+                    <div class="space-y-3 text-xs sm:text-sm text-slate-700">
+                        <p class="font-semibold text-slate-900">Article I Requirements:</p>
+                        <ul class="list-disc pl-5 space-y-1">
+                            <li>Minimum single-story living area: 1,100 sq ft; multi-story: 1,500 sq ft.</li>
+                            <li>Garden sheds restricted to 100 sq ft max and must match principal siding/roof materials.</li>
+                            <li>No above-ground swimming pools permitted. Hot tubs/saunas are allowed.</li>
+                            <li>Exterior finish must be completed within 12 months of excavation.</li>
+                        </ul>
+                    </div>`
+            },
+            trash: {
+                title: "Trash & Sanitation Guidelines",
+                content: `
+                    <div class="space-y-3 text-xs sm:text-sm text-slate-700">
+                        <p class="font-semibold text-slate-900">Article I, Section 17 Summary:</p>
+                        <ul class="list-disc pl-5 space-y-1">
+                            <li>No lot shall be used or maintained for dumping or waste accumulation.</li>
+                            <li>Trash and recycling containers must be kept in clean and sanitary conditions.</li>
+                            <li>Containers should be stored discreetly except on designated pickup days.</li>
+                        </ul>
+                    </div>`
+            },
+            pets: {
+                title: "Pet & Animal Guidelines",
+                content: `
+                    <div class="space-y-3 text-xs sm:text-sm text-slate-700">
+                        <p class="font-semibold text-slate-900">Article I, Section 14 Summary:</p>
+                        <ul class="list-disc pl-5 space-y-1">
+                            <li>Domestic household pets allowed in reasonable numbers.</li>
+                            <li>Pets must not create a nuisance or be permitted to run loose in the neighborhood.</li>
+                            <li>Commercial breeding, dog runs, and exterior kennels are strictly prohibited.</li>
+                        </ul>
+                    </div>`
+            },
+            utilities: {
+                title: "Utilities & Satellite Dishes",
+                content: `
+                    <div class="space-y-3 text-xs sm:text-sm text-slate-700">
+                        <p class="font-semibold text-slate-900">Article I Provisions:</p>
+                        <ul class="list-disc pl-5 space-y-1">
+                            <li>Satellite dishes under 24" allowed at rear only and must not be visible from street right-of-way.</li>
+                            <li>External window air conditioning units and clotheslines are banned.</li>
+                            <li>Mailboxes are consolidated in Central Mailbox Units per postal layout.</li>
+                        </ul>
+                    </div>`
+            },
+            pond: {
+                title: "Retention Ponds & Common Reserves",
+                content: `
+                    <div class="space-y-3 text-xs sm:text-sm text-slate-700">
+                        <p class="font-semibold text-slate-900">Reserve Area Rules:</p>
+                        <ul class="list-disc pl-5 space-y-1">
+                            <li>Reserve Areas A & B are managed by the HOA for stormwater retention and aesthetic entryways.</li>
+                            <li>Dumping, motorized watercraft, or altering shoreline landscaping is strictly forbidden.</li>
+                            <li>Common areas are maintained for the shared enjoyment and safety of all homeowners.</li>
+                        </ul>
+                    </div>`
+            }
+        };
+
+        function openRuleModal(ruleKey) {
+            const data = ruleData[ruleKey];
+            if (!data) return;
+
+            const modalContent = document.getElementById('rule-modal-content');
+            modalContent.innerHTML = `
+                <h3 class="text-lg font-bold text-slate-900 mb-3">${data.title}</h3>
+                ${data.content}
+                <div class="mt-6 flex justify-end">
+                    <button onclick="closeModal('rule-modal')" class="bg-brand-800 text-white font-semibold text-xs px-4 py-2 rounded-lg">Close</button>
+                </div>
+            `;
+            openModal('rule-modal');
+        }
+
+        function viewDocSummary(title, text) {
+            document.getElementById('doc-modal-title').textContent = title;
+            document.getElementById('doc-modal-body').textContent = text;
+            openModal('doc-modal');
+        }
+
+        // Generic Modal Helpers
+        function openModal(id) {
+            document.getElementById(id).classList.remove('hidden');
+            document.body.classList.add('modal-active');
+        }
+
+        function closeModal(id) {
+            document.getElementById(id).classList.add('hidden');
+            document.body.classList.remove('modal-active');
+        }
+
+        // Accordion Toggle for FAQ
+        function toggleFaq(index) {
+            const ans = document.getElementById('faq-ans-' + index);
+            const icon = document.getElementById('faq-icon-' + index);
+
+            if (ans.classList.contains('hidden')) {
+                ans.classList.remove('hidden');
+                icon.classList.add('rotate-180');
+            } else {
+                ans.classList.add('hidden');
+                icon.classList.remove('rotate-180');
+            }
+        }
+
+        // Form Handler
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            const successElem = document.getElementById('contact-success');
+            successElem.classList.remove('hidden');
+            document.getElementById('contact-form').reset();
+            
+            setTimeout(() => {
+                successElem.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }, 100);
+        }
+    </script>
+</body>
+</html>
